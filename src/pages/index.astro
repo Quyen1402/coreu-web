@@ -1,0 +1,258 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CourseCard from '../components/CourseCard.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { site, faqs, testimonials } from '../data/site';
+
+const courses = (await getCollection('courses', (c) => !c.data.draft && c.data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const pillars = [
+  { n: '01', t: 'Bài bản', d: 'Lộ trình rõ ràng từ nền tảng đến ứng dụng. Học đúng thứ tự, không bỏ sót, không lan man.' },
+  { n: '02', t: 'Tinh gọn', d: 'Mỗi bài học ngắn, đi thẳng vào điều quan trọng. Học xong là làm được ngay.' },
+  { n: '03', t: 'Đồng hành', d: 'Bạn không học một mình. Cộng đồng CoreU cùng hỏi, cùng chia sẻ, cùng tiến bộ.' },
+];
+
+const steps = [
+  { t: 'Chọn khoá học', d: 'Tìm lộ trình phù hợp với mục tiêu và nhịp sống của bạn.' },
+  { t: 'Quét mã VietQR', d: 'Thanh toán bằng app ngân hàng bất kỳ, xác nhận tự động.' },
+  { t: 'Vào cộng đồng Skool', d: 'Nhận lời mời qua email, mở bài học ngay trên mọi thiết bị.' },
+  { t: 'Học và áp dụng', d: 'Làm bài tập thật, chia sẻ kết quả, và cùng nhau phát triển.' },
+];
+---
+<Base>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="hero__blob hero__blob--a"></span>
+      <span class="hero__blob hero__blob--b"></span>
+      <svg class="hero__inf" viewBox="0 0 600 300" fill="none">
+        <path d="M150 150c0-55 40-95 90-95 80 0 120 190 200 190 50 0 90-40 90-95s-40-95-90-95c-80 0-120 190-200 190-50 0-90-40-90-95Z" pathLength="1" />
+      </svg>
+    </div>
+    <div class="wrap hero__in">
+      <p class="eyebrow reveal">Cộng đồng học tập CoreU</p>
+      <h1 class="display reveal" style="--d:.08s">Học bài bản.<br /><span class="grad-text">Tiến đến toàn diện.</span></h1>
+      <p class="lead reveal" style="--d:.16s">
+        Làm chủ AI và kỹ năng của kỷ nguyên số qua những khoá học tinh gọn, đơn giản, và luôn có người đồng hành, dù bạn bắt đầu từ đâu.
+      </p>
+      <div class="hero__cta reveal" style="--d:.24s">
+        <a href="/khoa-hoc" class="btn btn--primary">Khám phá khoá học <Arrow /></a>
+        <a href={site.skoolUrl} class="btn btn--ghost" target="_blank" rel="noopener">Tham gia cộng đồng</a>
+      </div>
+      <ul class="hero__facts reveal" style="--d:.32s">
+        <li><strong>Học trên Skool</strong><span>Mọi thiết bị, xem lại trọn đời</span></li>
+        <li><strong>Thanh toán VietQR</strong><span>Nhanh, không cần thẻ quốc tế</span></li>
+        <li><strong>Cộng đồng</strong><span>Hỏi đáp và đồng hành mỗi ngày</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="section manifesto">
+    <div class="wrap">
+      <p class="manifesto__text reveal">
+        Chúng mình tin rằng ai cũng có thể <em>học được bất cứ điều gì</em>, miễn là có lộ trình đúng và những người bạn cùng đi. CoreU sinh ra để làm điều đó.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Vì sao là CoreU</p>
+        <h2 class="h2 reveal">Ba điều làm nên cách học của CoreU</h2>
+      </div>
+      <div class="pillars">
+        {pillars.map((p, i) => (
+          <article class="pillar reveal" style={`--d:${i * 0.1}s`}>
+            <span class="pillar__n">{p.n}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head courses-head">
+        <div>
+          <p class="eyebrow reveal">Khoá học nổi bật</p>
+          <h2 class="h2 reveal">Bắt đầu từ điều bạn cần nhất</h2>
+        </div>
+        <a href="/khoa-hoc" class="btn btn--ghost btn--sm reveal">Tất cả khoá học <Arrow /></a>
+      </div>
+      <div class="grid-3">
+        {courses.map((c, i) => <CourseCard course={c} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section class="section section--dark journey">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Hành trình học</p>
+        <h2 class="h2 reveal">Từ lúc đăng ký đến lúc áp dụng, chỉ bốn bước</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step reveal" style={`--d:${i * 0.1}s`}>
+            <span class="step__dot">{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="section">
+    <div class="wrap community">
+      <div class="community__copy">
+        <p class="eyebrow reveal">Cộng đồng CoreU trên Skool</p>
+        <h2 class="h2 reveal">Nơi bài học, câu hỏi và bạn học ở cùng một chỗ</h2>
+        <p class="lead reveal">
+          Mỗi khoá học đi kèm một không gian cộng đồng riêng. Bạn xem bài, đặt câu hỏi, chia sẻ thành quả và nhận phản hồi, tất cả trong một ứng dụng gọn gàng.
+        </p>
+        <ul class="checks reveal">
+          <li>Bài học video sắp xếp theo lộ trình</li>
+          <li>Thảo luận và hỏi đáp theo từng chủ đề</li>
+          <li>Buổi live định kỳ cùng đội ngũ CoreU</li>
+        </ul>
+      </div>
+      <div class="community__visual reveal" aria-hidden="true">
+        <div class="mock">
+          <div class="mock__bar"><span></span><span></span><span></span></div>
+          <div class="mock__row mock__row--hi"><i></i><b></b></div>
+          <div class="mock__row"><i></i><b></b></div>
+          <div class="mock__row"><i></i><b></b></div>
+          <div class="mock__progress"><span></span></div>
+        </div>
+        <div class="bubble">Hôm nay mình đã tự động hoá xong báo cáo tuần 🎉</div>
+      </div>
+    </div>
+  </section>
+
+  {testimonials.length > 0 && (
+    <section class="section section--soft">
+      <div class="wrap">
+        <div class="section-head section-head--center">
+          <p class="eyebrow reveal">Học viên nói gì</p>
+          <h2 class="h2 reveal">Những hành trình đã bắt đầu</h2>
+        </div>
+        <div class="grid-3">
+          {testimonials.map((t, i) => (
+            <figure class="quote reveal" style={`--d:${i * 0.08}s`}>
+              <blockquote>“{t.quote}”</blockquote>
+              <figcaption><strong>{t.name}</strong><span>{t.role}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="wrap faq-wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Câu hỏi thường gặp</p>
+        <h2 class="h2 reveal">Bạn còn băn khoăn?</h2>
+        <p class="muted reveal">Nhắn cho CoreU qua <a href={`mailto:${site.email}`} class="link">{site.email}</a>, chúng mình phản hồi trong ngày.</p>
+      </div>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; margin-top: -76px; padding: calc(76px + clamp(64px, 12vw, 150px)) 0 clamp(72px, 10vw, 120px); }
+  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+  .hero__blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.55; }
+  .hero__blob--a { width: 620px; height: 620px; right: -160px; top: -180px; background: radial-gradient(circle, #83bdfd, transparent 70%); animation: float 18s ease-in-out infinite; }
+  .hero__blob--b { width: 460px; height: 460px; left: -200px; bottom: -220px; background: radial-gradient(circle, #57caff, transparent 70%); opacity: 0.3; animation: float 22s ease-in-out infinite reverse; }
+  .hero__inf { position: absolute; right: -4%; top: 50%; width: min(720px, 70vw); transform: translateY(-46%); opacity: 0.9; }
+  .hero__inf path { stroke: rgba(4, 29, 86, 0.14); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 3.2s var(--ease) 0.3s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes float { 50% { transform: translate(-30px, 40px) scale(1.06); } }
+  .hero__in { display: grid; gap: 26px; justify-items: start; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .hero__facts { display: grid; grid-template-columns: repeat(3, auto); gap: clamp(20px, 5vw, 64px); margin-top: clamp(32px, 6vw, 72px); padding-top: 28px; border-top: 1px solid var(--line); }
+  .hero__facts li { display: grid; gap: 4px; }
+  .hero__facts strong { font-size: 0.95rem; }
+  .hero__facts span { font-size: 0.85rem; color: var(--ink-3); }
+
+  .manifesto__text { font-size: clamp(1.6rem, 3.6vw, 2.9rem); font-weight: 600; line-height: 1.3; letter-spacing: -0.025em; max-width: 26ch; }
+  .manifesto__text em { font-style: normal; color: var(--ink-3); }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pillar { background: #fff; border-radius: 20px; padding: clamp(28px, 3.5vw, 40px); display: grid; gap: 14px; align-content: start; box-shadow: var(--shadow); }
+  .pillar__n { font-size: 0.85rem; font-weight: 700; color: var(--coreu-tech-blue); letter-spacing: 0.1em; }
+  .pillar h3 { font-size: 1.6rem; }
+  .pillar p { color: var(--ink-2); }
+
+  .courses-head { max-width: none; display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+  .courses-head > div { display: grid; gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .journey { position: relative; overflow: hidden; }
+  .journey::before { content: ''; position: absolute; right: -200px; top: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(131, 189, 253, 0.25), transparent 70%); }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; counter-reset: s; position: relative; }
+  .steps::before { content: ''; position: absolute; left: 22px; right: 22px; top: 22px; height: 1px; background: linear-gradient(90deg, rgba(131, 189, 253, 0.6), rgba(131, 189, 253, 0.1)); }
+  .step { position: relative; display: grid; gap: 12px; align-content: start; }
+  .step__dot { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: var(--coreu-modern-blue); border: 1.5px solid var(--coreu-tech-blue); color: var(--coreu-tech-blue); margin-bottom: 12px; }
+  .step h3 { font-size: 1.2rem; }
+  .step p { color: rgba(255, 255, 255, 0.66); font-size: 0.95rem; }
+
+  .community { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+  .community__copy { display: grid; gap: 22px; }
+  .checks { display: grid; gap: 12px; margin-top: 6px; }
+  .checks li { position: relative; padding-left: 34px; font-weight: 500; }
+  .checks li::before { content: ''; position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%; background: rgba(87, 255, 185, 0.25) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23041d56' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 12px no-repeat; }
+  .community__visual { position: relative; aspect-ratio: 1 / 0.9; border-radius: 28px; background: var(--coreu-gradient); display: grid; place-items: center; padding: 10%; }
+  .mock { width: 100%; background: #fff; border-radius: 16px; padding: 18px; display: grid; gap: 12px; box-shadow: var(--shadow-lg); }
+  .mock__bar { display: flex; gap: 6px; margin-bottom: 4px; }
+  .mock__bar span { width: 9px; height: 9px; border-radius: 50%; background: #e3e9f5; }
+  .mock__row { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 10px; background: var(--bg-soft); }
+  .mock__row i { width: 30px; height: 30px; border-radius: 8px; background: #d9e6fb; flex: none; }
+  .mock__row b { height: 8px; border-radius: 4px; background: #d9e6fb; flex: 1; max-width: 70%; }
+  .mock__row--hi { background: rgba(131, 189, 253, 0.18); }
+  .mock__row--hi i { background: var(--coreu-modern-blue); }
+  .mock__progress { height: 6px; border-radius: 3px; background: #eef2fa; overflow: hidden; }
+  .mock__progress span { display: block; width: 64%; height: 100%; background: var(--coreu-gradient); }
+  .bubble { position: absolute; left: -18px; bottom: 9%; max-width: 250px; background: #fff; padding: 14px 18px; border-radius: 16px 16px 16px 4px; font-size: 0.875rem; font-weight: 500; box-shadow: var(--shadow-lg); animation: float 9s ease-in-out infinite; }
+
+  .quote { margin: 0; background: #fff; border-radius: 20px; padding: 32px; display: grid; gap: 24px; box-shadow: var(--shadow); }
+  .quote blockquote { margin: 0; font-size: 1.05rem; line-height: 1.6; }
+  .quote figcaption { display: grid; gap: 2px; font-size: 0.9rem; }
+  .quote figcaption span { color: var(--ink-3); }
+
+  .faq-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .link { color: var(--ink); text-decoration: underline; text-decoration-color: var(--coreu-tech-blue); text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+  @media (max-width: 960px) {
+    .grid-3, .pillars { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+    .steps::before { display: none; }
+    .community, .faq-wrap { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .grid-3, .pillars, .steps { grid-template-columns: 1fr; }
+    .hero__facts { grid-template-columns: 1fr; gap: 16px; }
+    .hero__inf { opacity: 0.5; right: -30%; width: 120vw; }
+    .hero__cta .btn { flex: 1 1 100%; }
+    .bubble { left: 12px; right: 12px; bottom: -22px; max-width: none; }
+  }
+</style>

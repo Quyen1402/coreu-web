@@ -1,0 +1,22 @@
+---
+// TODO: thay bằng file SVG logo chính thức (chữ C lồng ký hiệu vô cực)
+interface Props { tone?: 'dark' | 'light' }
+const { tone = 'dark' } = Astro.props;
+const c = tone === 'light' ? '#ffffff' : '#041d56';
+---
+<span class="logo" aria-label="CoreU">
+  <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+    <defs>
+      <linearGradient id={`lg-${tone}`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color={c} /><stop offset="1" stop-color="#83bdfd" />
+      </linearGradient>
+    </defs>
+    <path d="M30 9.5A15 15 0 1 0 30 30.5" fill="none" stroke={`url(#lg-${tone})`} stroke-width="4.2" stroke-linecap="round" />
+    <path d="M14 20c0-2.6 2-4.4 4.3-4.4 3.6 0 5.8 8.8 9.4 8.8 2.3 0 4.3-1.8 4.3-4.4s-2-4.4-4.3-4.4c-3.6 0-5.8 8.8-9.4 8.8-2.3 0-4.3-1.8-4.3-4.4Z" fill="none" stroke={c} stroke-width="2.4" />
+  </svg>
+  <span class="logo__word" style={`color:${c}`}>CoreU</span>
+</span>
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 10px; }
+  .logo__word { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+</style>

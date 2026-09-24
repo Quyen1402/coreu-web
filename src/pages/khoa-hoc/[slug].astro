@@ -1,0 +1,181 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Faq from '../../components/Faq.astro';
+import Arrow from '../../components/Arrow.astro';
+import { site, faqs as siteFaqs } from '../../data/site';
+import { vnd } from '../../data/format';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses', (c) => !c.data.draft);
+  return courses.map((course) => ({ params: { slug: course.id }, props: { course } }));
+}
+const { course } = Astro.props as { course: CollectionEntry<'courses'> };
+const d = course.data;
+const url = new URL(`/khoa-hoc/${course.id}`, Astro.site).href;
+// Đợt 2: thay bằng /api/checkout?course=<slug> (PayOS VietQR)
+const enrollHref = d.skoolUrl ?? `mailto:${site.email}?subject=${encodeURIComponent('Đăng ký khoá ' + d.title)}`;
+const lessons = d.curriculum.reduce((n, m) => n + m.lessons.length, 0);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: d.title,
+  description: d.tagline,
+  url,
+  inLanguage: 'vi',
+  provider: { '@type': 'Organization', name: 'CoreU', sameAs: `https://${site.domain}` },
+  offers: { '@type': 'Offer', price: d.price, priceCurrency: 'VND', availability: 'https://schema.org/InStock', category: 'Paid' },
+  hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online' },
+};
+---
+<Base title={d.title} description={d.tagline} jsonLd={jsonLd}>
+  <section class="c-hero">
+    <div class="wrap c-hero__in">
+      <div class="c-hero__copy">
+        <a href="/khoa-hoc" class="back reveal">← Tất cả khoá học</a>
+        <p class="eyebrow reveal">{d.level}</p>
+        <h1 class="display reveal" style="--d:.06s">{d.title}</h1>
+        <p class="lead reveal" style="--d:.12s">{d.tagline}</p>
+        <ul class="meta reveal" style="--d:.18s">
+          <li><strong>{d.duration.split('·')[0].trim()}</strong><span>Thời lượng</span></li>
+          <li><strong>{lessons} bài</strong><span>Bài học video</span></li>
+          <li><strong>Skool</strong><span>Học & cộng đồng</span></li>
+        </ul>
+      </div>
+      <aside class="buy reveal" style="--d:.2s" id="dang-ky">
+        <p class="buy__label">Học phí trọn khoá</p>
+        <p class="buy__price">{vnd(d.price)}</p>
+        {d.comparePrice && <p class="buy__was"><s>{vnd(d.comparePrice)}</s> · Tiết kiệm {vnd(d.comparePrice - d.price)}</p>}
+        <a href={enrollHref} class="btn btn--primary btn--block">Đăng ký ngay <Arrow /></a>
+        <ul class="buy__list">
+          <li>Thanh toán VietQR, xác nhận tự động</li>
+          <li>Truy cập bài học trọn đời trên Skool</li>
+          <li>Tham gia cộng đồng học viên CoreU</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="wrap two">
+      <div class="section-head">
+        <p class="eyebrow reveal">Sau khoá học</p>
+        <h2 class="h2 reveal">Bạn sẽ làm được</h2>
+      </div>
+      <ol class="outcomes">
+        {d.outcomes.map((o, i) => (
+          <li class="reveal" style={`--d:${i * 0.06}s`}><span>{String(i + 1).padStart(2, '0')}</span>{o}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two">
+      <div class="section-head">
+        <p class="eyebrow reveal">Dành cho ai</p>
+        <h2 class="h2 reveal">Khoá học này dành cho bạn nếu…</h2>
+      </div>
+      <ul class="who">
+        {d.forWho.map((w, i) => <li class="reveal" style={`--d:${i * 0.06}s`}>{w}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Lộ trình</p>
+        <h2 class="h2 reveal">{d.curriculum.length} chặng, {lessons} bài học</h2>
+      </div>
+      <div class="modules">
+        {d.curriculum.map((m, i) => (
+          <article class="module reveal" style={`--d:${i * 0.06}s`}>
+            <h3>{m.title}</h3>
+            <ul>{m.lessons.map((l) => <li>{l}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two">
+      <div class="section-head">
+        <p class="eyebrow reveal">Câu hỏi thường gặp</p>
+        <h2 class="h2 reveal">Trước khi bắt đầu</h2>
+      </div>
+      <Faq items={[...d.faq, ...siteFaqs]} />
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap final__box reveal">
+      <div>
+        <h2 class="h2">Sẵn sàng bắt đầu?</h2>
+        <p class="lead">{d.title} · {vnd(d.price)}</p>
+      </div>
+      <a href={enrollHref} class="btn btn--light">Đăng ký ngay <Arrow /></a>
+    </div>
+  </section>
+
+  <div class="sticky-buy">
+    <span><strong>{vnd(d.price)}</strong><small>{d.duration}</small></span>
+    <a href={enrollHref} class="btn btn--primary btn--sm">Đăng ký</a>
+  </div>
+</Base>
+
+<style>
+  .c-hero { padding: clamp(40px, 6vw, 80px) 0 clamp(64px, 9vw, 110px); background: radial-gradient(900px 500px at 90% -10%, rgba(131, 189, 253, 0.35), transparent 70%); }
+  .c-hero__in { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+  .c-hero__copy { display: grid; gap: 22px; justify-items: start; }
+  .c-hero .display { font-size: clamp(2.3rem, 5vw, 3.9rem); }
+  .back { font-size: 0.875rem; font-weight: 500; color: var(--ink-3); }
+  .back:hover { color: var(--ink); }
+  .meta { display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 48px); padding-top: 24px; margin-top: 8px; border-top: 1px solid var(--line); }
+  .meta li { display: grid; gap: 2px; }
+  .meta strong { font-size: 1.15rem; }
+  .meta span { font-size: 0.8rem; color: var(--ink-3); }
+
+  .buy { position: sticky; top: 100px; background: #fff; border-radius: 24px; padding: clamp(26px, 3vw, 36px); box-shadow: var(--shadow-lg); border: 1px solid var(--line); display: grid; gap: 14px; }
+  .buy__label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .buy__price { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+  .buy__was { font-size: 0.875rem; color: var(--ink-2); margin-top: -4px; }
+  .buy__was s { color: var(--ink-3); }
+  .buy .btn { margin-top: 8px; }
+  .buy__list { display: grid; gap: 10px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--ink-2); }
+  .buy__list li { padding-left: 24px; position: relative; }
+  .buy__list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--coreu-green); box-shadow: 0 0 0 3px rgba(87, 255, 185, 0.25); }
+
+  .two { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .two .section-head { margin-bottom: 0; }
+  .outcomes { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .outcomes li { display: flex; gap: 20px; align-items: baseline; background: #fff; border-radius: 16px; padding: 22px 24px; font-weight: 500; font-size: 1.05rem; box-shadow: var(--shadow); }
+  .outcomes span { font-size: 0.8rem; font-weight: 700; color: var(--coreu-tech-blue); letter-spacing: 0.08em; }
+  .who { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .who li { padding: 22px 0 22px 40px; border-bottom: 1px solid var(--line); font-size: 1.1rem; font-weight: 500; position: relative; }
+  .who li::before { content: '→'; position: absolute; left: 0; color: var(--coreu-tech-blue); font-weight: 700; }
+
+  .modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .module { border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 28px; background: rgba(255, 255, 255, 0.03); display: grid; gap: 16px; align-content: start; transition: border-color 0.3s, background 0.3s; }
+  .module:hover { border-color: rgba(131, 189, 253, 0.5); background: rgba(131, 189, 253, 0.06); }
+  .module h3 { font-size: 1.15rem; }
+  .module ul { display: grid; gap: 8px; }
+  .module li { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; padding-left: 18px; position: relative; }
+  .module li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--coreu-tech-blue); }
+
+  .final { padding-bottom: clamp(72px, 10vw, 120px); }
+  .final__box { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; background: var(--coreu-gradient); color: #fff; border-radius: 28px; padding: clamp(36px, 6vw, 72px); }
+  .final__box .lead { color: rgba(255, 255, 255, 0.8); margin-top: 10px; }
+
+  .sticky-buy { display: none; }
+  @media (max-width: 960px) {
+    .c-hero__in, .two { grid-template-columns: 1fr; }
+    .buy { position: static; }
+    .modules { grid-template-columns: 1fr; }
+    .sticky-buy { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 20px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow-lg); }
+    .sticky-buy span { display: grid; line-height: 1.2; }
+    .sticky-buy small { font-size: 0.72rem; color: var(--ink-3); }
+    :global(footer) { padding-bottom: 110px; }
+  }
+</style>

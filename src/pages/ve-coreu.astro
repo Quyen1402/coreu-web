@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+const values = [
+  { t: 'Cộng đồng', d: 'Học cùng nhau đi xa hơn học một mình. Mỗi câu hỏi của bạn là bài học cho người khác.' },
+  { t: 'Chia sẻ', d: 'Tri thức có giá trị nhất khi được trao đi. CoreU chia sẻ những gì đã thực sự làm được.' },
+  { t: 'Phát triển toàn diện', d: 'Không chỉ là kỹ năng, mà là cách bạn nghĩ, làm việc và sống trong kỷ nguyên số.' },
+];
+---
+<Base title="Về CoreU" description="CoreU kế thừa tinh thần QQ PATH: cùng chia sẻ, cùng phát triển, cùng tiến đến toàn diện.">
+  <section class="section about-hero">
+    <div class="wrap section-head">
+      <p class="eyebrow reveal">Về CoreU</p>
+      <h1 class="display reveal" style="--d:.06s">Core là giá trị cốt lõi.<br /><span class="grad-text">U là bạn.</span></h1>
+      <p class="lead reveal" style="--d:.12s">
+        CoreU kế thừa tinh thần chia sẻ và đồng hành từ QQ PATH, và mở rộng thành một cộng đồng. Nơi mọi người cùng học, cùng chia sẻ, cùng phát triển, cùng tiến đến toàn diện.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--dark story">
+    <div class="wrap story__in">
+      <svg class="story__mark reveal" viewBox="0 0 600 300" fill="none" aria-hidden="true">
+        <path d="M150 150c0-55 40-95 90-95 80 0 120 190 200 190 50 0 90-40 90-95s-40-95-90-95c-80 0-120 190-200 190-50 0-90-40-90-95Z" />
+      </svg>
+      <div class="story__copy">
+        <p class="eyebrow reveal">Ý nghĩa biểu tượng</p>
+        <h2 class="h2 reveal">Chữ C lồng ký hiệu vô cực</h2>
+        <p class="lead reveal">
+          Ký hiệu vô cực nói về sự vận động không ngừng của tri thức. Học không có vạch đích, và mỗi bước bạn đi hôm nay mở ra một bước tiếp theo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Điều chúng mình tin</p>
+        <h2 class="h2 reveal">Ba giá trị dẫn đường</h2>
+      </div>
+      <div class="values">
+        {values.map((v, i) => (
+          <article class="reveal" style={`--d:${i * 0.08}s`}>
+            <span>{String(i + 1).padStart(2, '0')}</span>
+            <h3>{v.t}</h3>
+            <p>{v.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="wrap contact">
+      <div class="section-head">
+        <p class="eyebrow reveal">Liên hệ</p>
+        <h2 class="h2 reveal">Trò chuyện cùng CoreU</h2>
+      </div>
+      <div class="contact__list reveal">
+        <a href={`mailto:${site.email}`}><small>Email</small>{site.email}</a>
+        <a href={site.phoneHref}><small>Điện thoại</small>{site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+<style>
+  .about-hero { padding-top: clamp(56px, 8vw, 110px); }
+  .about-hero .section-head { max-width: 880px; margin-bottom: 0; }
+  .story__in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .story__mark path { stroke: var(--coreu-tech-blue); stroke-width: 2; }
+  .story__copy { display: grid; gap: 20px; }
+  .values { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .values article { padding: 36px 32px 8px 0; display: grid; gap: 14px; align-content: start; }
+  .values article + article { padding-left: 32px; border-left: 1px solid var(--line); }
+  .values span { font-size: 0.85rem; font-weight: 700; color: var(--coreu-tech-blue); letter-spacing: 0.1em; }
+  .values h3 { font-size: 1.5rem; }
+  .values p { color: var(--ink-2); }
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .contact .section-head { margin-bottom: 0; }
+  .contact__list { display: grid; gap: 12px; }
+  .contact__list a { display: grid; gap: 4px; background: #fff; border-radius: 16px; padding: 22px 26px; font-size: 1.2rem; font-weight: 600; box-shadow: var(--shadow); transition: transform 0.4s var(--ease); overflow-wrap: anywhere; }
+  .contact__list a:hover { transform: translateY(-3px); }
+  .contact__list small { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  @media (max-width: 860px) {
+    .story__in, .contact { grid-template-columns: 1fr; }
+    .values { grid-template-columns: 1fr; }
+    .values article, .values article + article { padding: 28px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  }
+</style>

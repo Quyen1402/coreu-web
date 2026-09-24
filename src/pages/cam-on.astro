@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import { site } from '../data/site';
+---
+<Base title="Cảm ơn bạn" description="Đăng ký thành công. Kiểm tra email để nhận lời mời vào cộng đồng CoreU trên Skool.">
+  <meta name="robots" content="noindex" slot="head" />
+  <section class="section thanks">
+    <div class="wrap thanks__in">
+      <span class="thanks__ok reveal" aria-hidden="true">✓</span>
+      <h1 class="h2 reveal">Chào mừng bạn đến với CoreU!</h1>
+      <p class="lead reveal">
+        Thanh toán đã được ghi nhận. Trong vài phút, bạn sẽ nhận email kèm lời mời vào lớp học trên Skool. Nhớ kiểm tra cả hộp thư Quảng cáo/Spam nhé.
+      </p>
+      <div class="thanks__cta reveal">
+        <a href={site.skoolUrl} class="btn btn--primary" target="_blank" rel="noopener">Mở Skool <Arrow /></a>
+        <a href={`mailto:${site.email}`} class="btn btn--ghost">Cần hỗ trợ?</a>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .thanks__in { display: grid; gap: 22px; justify-items: center; text-align: center; max-width: 640px; }
+  .thanks__ok { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font-size: 2rem; font-weight: 700; background: rgba(87, 255, 185, 0.3); color: var(--ink); }
+  .thanks__cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+</style>
