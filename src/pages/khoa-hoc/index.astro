@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+const courses = (await getCollection('courses', (c) => !c.data.draft)).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Khoá học" description="Các khoá học AI và kỹ năng số của CoreU: bài bản, tinh gọn, học trên Skool, thanh toán VietQR.">
+  <section class="section page-hero">
+    <div class="wrap section-head">
+      <p class="eyebrow reveal">Khoá học</p>
+      <h1 class="display reveal" style="--d:.06s">Chọn lộ trình <span class="grad-text">của bạn</span></h1>
+      <p class="lead reveal" style="--d:.12s">Mỗi khoá học là một hành trình trọn vẹn: bài học ngắn, bài tập thật, và một cộng đồng đồng hành đến cuối.</p>
+    </div>
+    <div class="wrap grid">
+      {courses.map((c, i) => <CourseCard course={c} index={i} />)}
+    </div>
+  </section>
+  <CtaBand title="Chưa chắc nên bắt đầu từ đâu?" text="Nhắn cho CoreU, chúng mình sẽ gợi ý lộ trình hợp với mục tiêu của bạn." href="mailto:we@qqpath.com" label="Nhận tư vấn lộ trình" />
+</Base>
+<style>
+  .page-hero { padding-top: clamp(56px, 8vw, 110px); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+</style>

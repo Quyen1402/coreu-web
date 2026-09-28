@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Chính sách bảo mật & hoàn tiền">
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">Chính sách</p>
+      <h1 class="h2" style="margin:16px 0 32px">Bảo mật & hoàn tiền</h1>
+      <!-- TODO: nhờ bộ phận pháp lý rà soát trước khi ra mắt -->
+      <h2>Thông tin chúng mình thu thập</h2>
+      <p>Họ tên, email, số điện thoại và thông tin đơn hàng khi bạn đăng ký khoá học. CoreU không lưu thông tin tài khoản ngân hàng; việc thanh toán do cổng thanh toán và ngân hàng của bạn xử lý.</p>
+      <h2>Mục đích sử dụng</h2>
+      <ul>
+        <li>Xác nhận đơn hàng và cấp quyền truy cập khoá học trên Skool</li>
+        <li>Gửi thông tin học tập, cập nhật khoá học và hỗ trợ</li>
+        <li>Cải thiện trải nghiệm học tập trên coreu.ai</li>
+      </ul>
+      <p>Bạn có thể huỷ nhận email bất cứ lúc nào qua đường link cuối mỗi email.</p>
+      <h2>Hoàn tiền</h2>
+      <p>Nếu khoá học chưa phù hợp, bạn gửi yêu cầu hoàn tiền trong vòng 7 ngày kể từ ngày thanh toán tới {site.email}. CoreU xử lý trong 5 ngày làm việc.</p>
+      <h2>Liên hệ</h2>
+      <p>{site.email} · {site.phone}</p>
+    </div>
+  </section>
+</Base>

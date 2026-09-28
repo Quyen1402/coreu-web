@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Điều khoản sử dụng">
+  <section class="section">
+    <div class="wrap prose">
+      <p class="eyebrow">Điều khoản</p>
+      <h1 class="h2" style="margin:16px 0 32px">Điều khoản sử dụng</h1>
+      <!-- TODO: nhờ bộ phận pháp lý rà soát trước khi ra mắt -->
+      <h2>Quyền truy cập khoá học</h2>
+      <p>Mỗi lượt đăng ký dành cho một người học. Tài khoản Skool không được chia sẻ cho người khác.</p>
+      <h2>Bản quyền nội dung</h2>
+      <p>Toàn bộ video, tài liệu và bài tập thuộc bản quyền của CoreU. Bạn được dùng cho mục đích học tập cá nhân, không sao chép hay phân phối lại.</p>
+      <h2>Cộng đồng</h2>
+      <p>Hãy tôn trọng các thành viên khác. CoreU có thể tạm khoá tài khoản vi phạm quy tắc cộng đồng.</p>
+      <h2>Liên hệ</h2>
+      <p>{site.email} · {site.phone}</p>
+    </div>
+  </section>
+</Base>

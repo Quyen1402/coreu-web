@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Arrow from './Arrow.astro';
+import { vnd } from '../data/format';
+interface Props { course: CollectionEntry<'courses'>; index?: number }
+const { course, index = 0 } = Astro.props;
+const d = course.data;
+---
+<a href={`/khoa-hoc/${course.id}`} class="card reveal" style={`--d:${index * 0.08}s`}>
+  <div class="card__art" aria-hidden="true">
+    <span class="card__num">{String(index + 1).padStart(2, '0')}</span>
+    <span class="card__orb"></span>
+  </div>
+  <div class="card__body">
+    <p class="card__meta">{d.level} · {d.duration}</p>
+    <h3 class="card__title">{d.title}</h3>
+    <p class="card__tagline">{d.tagline}</p>
+    <div class="card__foot">
+      <span class="card__price">
+        {d.comparePrice && <s>{vnd(d.comparePrice)}</s>}
+        {vnd(d.price)}
+      </span>
+      <span class="card__go">Xem khoá học <Arrow /></span>
+    </div>
+  </div>
+</a>
+<style>
+  .card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.3s; }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+  .card__art { position: relative; aspect-ratio: 16 / 10; background: var(--coreu-gradient); overflow: hidden; }
+  .card:nth-child(3n + 2) .card__art { background: linear-gradient(135deg, #0a2a70, #57caff); }
+  .card:nth-child(3n + 3) .card__art { background: linear-gradient(135deg, #041d56, #354a78 55%, #83bdfd); }
+  .card__num { position: absolute; left: 24px; bottom: 12px; font-size: 5.5rem; font-weight: 700; line-height: 1; color: rgba(255, 255, 255, 0.92); letter-spacing: -0.05em; }
+  .card__orb { position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.35); transition: transform 0.8s var(--ease); }
+  .card__orb::after { content: ''; position: absolute; inset: 36px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.2); }
+  .card:hover .card__orb { transform: scale(1.15) translate(-10px, 10px); }
+  .card__body { display: flex; flex-direction: column; gap: 10px; padding: 26px 26px 24px; flex: 1; }
+  .card__meta { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .card__title { font-size: 1.35rem; letter-spacing: -0.02em; }
+  .card__tagline { color: var(--ink-2); font-size: 0.95rem; }
+  .card__foot { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); }
+  .card__price { font-weight: 700; font-size: 1.05rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .card__price s { font-weight: 500; font-size: 0.85rem; color: var(--ink-3); }
+  .card__go { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+  .card__go :global(svg) { width: 16px; height: 16px; transition: transform 0.35s var(--ease); }
+  .card:hover .card__go :global(svg) { transform: translateX(4px); }
+</style>

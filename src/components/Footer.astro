@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <Logo tone="light" />
+        <p class="ftr__tag">{site.tagline}</p>
+        <p class="ftr__desc">Cùng chia sẻ, cùng phát triển, cùng tiến đến toàn diện.</p>
+      </div>
+      <div class="ftr__cols">
+        <div>
+          <h4>Học cùng CoreU</h4>
+          <a href="/khoa-hoc">Tất cả khoá học</a>
+          <a href={site.skoolUrl} target="_blank" rel="noopener">Cộng đồng Skool</a>
+          <a href="/ve-coreu">Về CoreU</a>
+        </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.phoneHref}>{site.phone}</a>
+        </div>
+        <div>
+          <h4>Chính sách</h4>
+          <a href="/chinh-sach">Bảo mật & hoàn tiền</a>
+          <a href="/dieu-khoan">Điều khoản sử dụng</a>
+        </div>
+      </div>
+    </div>
+    <div class="ftr__bot">
+      <span>© {year} CoreU · {site.domain}</span>
+      <span>Kế thừa tinh thần QQ PATH</span>
+    </div>
+  </div>
+</footer>
+<style>
+  .ftr { background: #020f30; color: rgba(255, 255, 255, 0.7); padding: 88px 0 32px; font-size: 0.925rem; }
+  .ftr__top { display: grid; grid-template-columns: 1.2fr 2fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .ftr__tag { margin-top: 22px; font-size: 1.6rem; font-weight: 600; font-style: italic; letter-spacing: -0.01em; color: #fff; }
+  .ftr__tag::after { content: ''; display: block; width: 48px; height: 3px; margin-top: 14px; background: var(--coreu-gradient); border-radius: 3px; }
+  .ftr__desc { margin-top: 16px; max-width: 34ch; }
+  .ftr__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .ftr__cols h4 { color: #fff; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
+  .ftr__cols a { display: block; padding: 5px 0; transition: color 0.2s; overflow-wrap: anywhere; }
+  .ftr__cols a:hover { color: var(--coreu-tech-blue); }
+  .ftr__bot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 28px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.45); }
+  @media (max-width: 820px) {
+    .ftr__top { grid-template-columns: 1fr; }
+    .ftr__cols { grid-template-columns: 1fr 1fr; }
+  }
+</style>
