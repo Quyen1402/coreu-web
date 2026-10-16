@@ -188,6 +188,17 @@ td:first-child{font-weight:700}
 .scrim{position:fixed;inset:0;background:rgba(1,8,28,.72);backdrop-filter:blur(6px);animation:fade .25s}
 .modal .form{position:relative;width:100%;max-width:560px;animation:pop .3s}
 .x{position:absolute;top:12px;right:14px;width:34px;height:34px;border-radius:50%;border:0;background:var(--soft);color:var(--mb);font-size:1.3rem;cursor:pointer}
+.form.pay{text-align:left}
+.qrbox{display:grid;place-items:center;padding:16px;border-radius:16px;background:var(--soft);border:1px solid var(--line);margin:6px 0 16px}
+.qrbox img{width:240px;height:240px;object-fit:contain;background:#fff;border-radius:10px}
+.payinfo{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:.9rem;margin-bottom:14px}
+.payinfo dt{color:var(--nb)}.payinfo dd{font-weight:600;overflow-wrap:anywhere}
+.payinfo .big{font-size:1.2rem;font-weight:800}
+.copy{margin-left:6px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:2px 8px;font:600 .72rem Montserrat,sans-serif;color:var(--mb);cursor:pointer}
+.wait{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--nb);margin-bottom:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(87,255,185,.7);animation:ping 1.4s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(87,255,185,0)}100%{box-shadow:0 0 0 0 rgba(87,255,185,0)}}
+.back{display:block;margin:12px auto 0;border:0;background:none;color:var(--nb);font:600 .84rem Montserrat,sans-serif;cursor:pointer}
 .chosen{padding:12px 14px;border-radius:12px;background:var(--soft);font-size:.88rem;margin-bottom:14px;border:1px solid var(--line)}
 .chosen b{color:var(--mb)}
 @keyframes fade{from{opacity:0}}@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
@@ -410,7 +421,7 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
 <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true"><div class="scrim" data-close></div>
 <form class="form" id="f" novalidate>
         <button type="button" class="x" aria-label="Đóng" data-close>×</button><div class="head"><h3>Thông tin mở tài khoản</h3><img src="logo-color.png" alt="CoreU" width="116" height="26"></div>
-        <p class="sub">Điền để CoreU mở đúng tài khoản cho bạn. Bấm tiếp tục để sang trang thanh toán SePay.</p>
+        <p class="sub">Điền để CoreU mở đúng tài khoản cho bạn. Bấm tiếp tục để nhận mã QR chuyển khoản.</p>
         <div class="seg">
           <label><input type="radio" name="loai" value="Cá nhân" checked><span>Cá nhân</span></label>
           <label><input type="radio" name="loai" value="Doanh nghiệp"><span>Doanh nghiệp</span></label>
@@ -438,6 +449,29 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
         <div class="ok" id="ok">Đã nhận thông tin.</div>
         <p class="fine">Hoặc gửi trực tiếp qua Zalo 0946 54 1402 · we@qqpath.com</p>
       </form>
+<div class="form pay" id="payView" hidden>
+  <button type="button" class="x" aria-label="Đóng" data-close>×</button>
+  <div class="head"><h3>Chuyển khoản để hoàn tất</h3><img src="logo-color.png" alt="CoreU" width="89" height="20"></div>
+  <p class="sub">Quét mã QR bằng app ngân hàng. Số tiền và nội dung đã điền sẵn.</p>
+  <div class="qrbox"><img id="qrImg" alt="Mã QR thanh toán" width="240" height="240"></div>
+  <dl class="payinfo">
+    <dt>Gói</dt><dd id="payProduct"></dd>
+    <dt>Số tiền</dt><dd id="payAmount" class="big"></dd>
+    <dt>Nội dung CK</dt><dd><b id="payMemo"></b> <button type="button" class="copy" data-copy="payMemo">Sao chép</button></dd>
+    <dt>Ngân hàng</dt><dd>Vietcombank</dd>
+    <dt>Số tài khoản</dt><dd><b id="payAcc"></b> <button type="button" class="copy" data-copy="payAcc">Sao chép</button></dd>
+    <dt>Chủ tài khoản</dt><dd>CÔNG TY TNHH QQ PATH</dd>
+  </dl>
+  <p class="wait" id="payWait"><span class="dot"></span>Đang chờ xác nhận thanh toán…</p>
+  <button type="button" class="btn btn-primary" id="paidBtn">Tôi đã chuyển khoản</button>
+  <button type="button" class="back" id="payBack">← Sửa thông tin / chọn lại gói</button>
+</div>
+<div class="form pay" id="doneView" hidden>
+  <button type="button" class="x" aria-label="Đóng" data-close>×</button>
+  <div class="head"><h3 id="doneTitle">Cảm ơn bạn!</h3><img src="logo-color.png" alt="CoreU" width="89" height="20"></div>
+  <p id="doneText"></p>
+  <p class="fine">Cần hỗ trợ: Zalo / hotline 0946 54 1402 · we@qqpath.com</p>
+</div>
 </div>
 <footer><div class="wrap">
   <div class="cols">
@@ -450,26 +484,30 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
 
 <script>
 /* ==== CẤU HÌNH: chỉ cần sửa phần này ====
-   sepay: dán link thanh toán SePay. Khách bấm "Thanh toán" → điền form → mở link này. Để trống thì báo CoreU sẽ gửi link sau.
-   FORM_ENDPOINT: URL nhận dữ liệu form (API / Google Apps Script). Để trống thì form mở email gửi we@qqpath.com. */
+   code: mã gói ghép vào nội dung CK (ARN + code + SĐT). amount: số tiền VND cho 1 tài khoản / 1 seat 12 tháng.
+   */
 var ZALO = "https://zalo.me/0946541402";
-var FORM_ENDPOINT = "";
+/* SePay: tài khoản ảo Vietcombank của CÔNG TY TNHH QQ PATH (giống 75claude.coreu.ai).
+   Đơn ghi về Make (ORDER_HOOK), kiểm tra đã thanh toán qua PAID_HOOK?code=<nội dung CK>. */
+var SEPAY_ACC = "QRPSEP1ZZZZ53300166";
+var ORDER_HOOK = "https://hook.eu1.make.com/36yh0q8tbbddcrmiu6j6g7otf8uwseax";
+var PAID_HOOK = "https://hook.eu1.make.com/rfd5pp9r0n7ni810yrm13mg95x3jjhzd";
 var PACKAGES = [
-  {group:"canhan", id:"claude-pro", name:"Claude Pro", sub:"Gói cá nhân – 1 tài khoản", price:"6.990.000đ", cycle:"12 tháng", alt:"Chỉ thanh toán theo năm", recommended:true,
+  {group:"canhan", id:"claude-pro", code:"11", amount:6990000, name:"Claude Pro", sub:"Gói cá nhân – 1 tài khoản", price:"6.990.000đ", cycle:"12 tháng", alt:"Chỉ thanh toán theo năm", recommended:true,
    features:["Hạn mức mỗi phiên gấp ít nhất 5 lần bản miễn phí","Ưu tiên truy cập giờ cao điểm, dùng sớm tính năng mới","Tự chọn model Claude cho từng tác vụ","Projects và kho kiến thức riêng để Claude nhớ ngữ cảnh","Dùng Claude Code trên máy tính"],
-   fit:["Cá nhân, freelancer, chủ doanh nghiệp nhỏ bắt đầu dùng AI","Viết lách, soạn thảo, tóm tắt, phân tích tài liệu","Học tập, nghiên cứu, lập trình ở mức cá nhân"], sepay:""},
-  {group:"canhan", id:"claude-max-5x", name:"Claude Max 5x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"3.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
+   fit:["Cá nhân, freelancer, chủ doanh nghiệp nhỏ bắt đầu dùng AI","Viết lách, soạn thảo, tóm tắt, phân tích tài liệu","Học tập, nghiên cứu, lập trình ở mức cá nhân"]},
+  {group:"canhan", id:"claude-max-5x", code:"12", amount:3990000, name:"Claude Max 5x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"3.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
    features:["Hạn mức gấp 5 lần Claude Pro","Ưu tiên truy cập, dùng sớm model và tính năng mới nhất","Dùng Claude Code cường độ cao cho lập trình"],
-   fit:["Người dùng AI thường xuyên mỗi ngày, hay chạm giới hạn của Pro"], sepay:""},
-  {group:"canhan", id:"claude-max-20x", name:"Claude Max 20x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"6.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
+   fit:["Người dùng AI thường xuyên mỗi ngày, hay chạm giới hạn của Pro"]},
+  {group:"canhan", id:"claude-max-20x", code:"13", amount:6990000, name:"Claude Max 20x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"6.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
    features:["Hạn mức gấp 20 lần Claude Pro","Ưu tiên truy cập cao nhất, dùng sớm model và tính năng mới nhất","Phù hợp chạy Claude Code và tác vụ dài liên tục"],
-   fit:["Lập trình viên, chuyên gia dùng AI cường độ rất cao gần như cả ngày"], sepay:""},
-  {group:"team", id:"team-standard", name:"Claude Team – Standard", sub:"Tối thiểu 2 seat / team", price:"8.490.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 1.000.000đ / seat / tháng (từ 10 người dùng)", recommended:true, quote:true,
+   fit:["Lập trình viên, chuyên gia dùng AI cường độ rất cao gần như cả ngày"]},
+  {group:"team", id:"team-standard", code:"21", amount:8490000, name:"Claude Team – Standard", sub:"Tối thiểu 2 seat / team", price:"8.490.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 1.000.000đ / seat / tháng (từ 10 người dùng)", recommended:true, quote:true,
    features:["Hạn mức gấp 1,25 lần Claude Pro","Gồm Claude Code (lập trình) và Claude Cowork (tự động hoá việc văn phòng)","Projects dùng chung: cả nhóm làm trên cùng tài liệu, ngữ cảnh","Kết nối Google Drive, Gmail, Google Calendar, GitHub, Microsoft 365, Slack","Quản trị, thanh toán tập trung, SSO; dữ liệu mặc định không dùng để huấn luyện AI"],
-   fit:["Doanh nghiệp, phòng ban cần trang bị AI và quản lý tập trung","Soạn email, báo cáo, hợp đồng, nội dung; tóm tắt tài liệu dài","Nhân sự dùng AI thường xuyên hằng ngày"], sepay:""},
-  {group:"team", id:"team-premium", name:"Claude Team – Premium", sub:"Tối thiểu 2 seat / team", price:"41.990.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 5.000.000đ / seat / tháng (từ 10 người dùng)", quote:true,
+   fit:["Doanh nghiệp, phòng ban cần trang bị AI và quản lý tập trung","Soạn email, báo cáo, hợp đồng, nội dung; tóm tắt tài liệu dài","Nhân sự dùng AI thường xuyên hằng ngày"]},
+  {group:"team", id:"team-premium", code:"22", amount:41990000, name:"Claude Team – Premium", sub:"Tối thiểu 2 seat / team", price:"41.990.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 5.000.000đ / seat / tháng (từ 10 người dùng)", quote:true,
    features:["Toàn bộ tính năng của Standard seat","Hạn mức gấp 6,25 lần Pro (gấp 5 lần Standard)","Hạn mức theo tuần cao hơn, ít gián đoạn khi làm cường độ cao","Kết hợp được với Standard seat trong cùng một team"],
-   fit:["Lập trình viên dùng Claude Code cả ngày, dự án nhiều file","Phân tích dữ liệu lớn, tài liệu dài, tự động hoá quy trình","Cấp quản lý, nhân sự chủ chốt cần dùng AI không bị giới hạn sớm"], sepay:""}
+   fit:["Lập trình viên dùng Claude Code cả ngày, dự án nhiều file","Phân tích dữ liệu lớn, tài liệu dài, tự động hoá quy trình","Cấp quản lý, nhân sự chủ chốt cần dùng AI không bị giới hạn sớm"]}
 ];
 var NOTES = {
   canhan:["Giá đã gồm VAT 10%, tính cho 1 tài khoản.","Claude Pro chỉ thanh toán theo năm; Claude Max chỉ thanh toán theo tháng.","Claude Pro và Claude Max là gói cá nhân, không có công cụ quản trị nhóm.","Tính năng và hạn mức có thể thay đổi theo chính sách của Anthropic tại thời điểm đăng ký."],
@@ -531,28 +569,67 @@ var NOTES = {
   function openModal(id){
     var p=byId(id);f.loai.value=p.group==='team'?'Doanh nghiệp':'Cá nhân';
     f.querySelectorAll('input[name=loai]').forEach(function(r){r.checked=r.value===f.loai.value});
-    fillPlans(id);ok.classList.remove('show');
+    fillPlans(id);ok.classList.remove('show');[document.getElementById('payView'),document.getElementById('doneView')].forEach(function(x){x.hidden=true});f.hidden=false;
     modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
     setTimeout(function(){f.ten.focus()},50);
   }
-  function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+  function closeModal(){if(typeof stopPoll==='function')stopPoll();modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
   modal.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))closeModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
   f.querySelectorAll('input[name=loai]').forEach(function(r){r.addEventListener('change',function(){fillPlans()})});
   fillPlans();
+  var payView=document.getElementById('payView'), doneView=document.getElementById('doneView'), poll=null, order=null;
+  function show(v){[f,payView,doneView].forEach(function(x){x.hidden=x!==v});modal.scrollTop=0}
+  function setT(id,t){document.getElementById(id).textContent=t}
+  function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+  function stopPoll(){if(poll){clearInterval(poll);poll=null}}
+  function done(paid){
+    stopPoll();
+    setT('doneTitle',paid?'Đã nhận thanh toán!':'Cảm ơn bạn!');
+    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao qua Zalo '+order.phone+' và email '+order.email+'.');
+    gtag('event','purchase',{transaction_id:order.memo,value:order.amount,currency:'VND',items:[{item_id:order.pkg,item_name:order.product}]});
+    show(doneView);
+  }
+  document.getElementById('payBack').addEventListener('click',function(){stopPoll();show(f)});
+  document.getElementById('paidBtn').addEventListener('click',function(){done(false)});
+  modal.addEventListener('click',function(e){var c=e.target.closest('[data-copy]');if(!c)return;
+    var t=document.getElementById(c.dataset.copy).textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){c.textContent='Đã chép'},function(){c.textContent='Chép tay nhé'});
+    setTimeout(function(){c.textContent='Sao chép'},1500)});
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var miss=['ten','sdt','email'].filter(function(n){var el=f[n];var bad=!el.value.trim()||(n==='email'&&!/^\S+@\S+\.\S+$/.test(el.value));el.style.borderColor=bad?'#ff2d7a':'';return bad});
+    var miss=['ten','sdt','email'].filter(function(n){var el=f[n];var v=el.value.trim();
+      var bad=!v||(n==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))||(n==='sdt'&&!/^[0-9 +().-]{8,}$/.test(v));
+      el.style.borderColor=bad?'#ff2d7a':'';return bad});
     if(miss.length){f[miss[0]].focus();return;}
-    var data={};new FormData(f).forEach(function(v,k){data[k]=v});
-    var p=byId(data.goi);data.goi=p.name+' – '+p.price+' / '+p.cycle;
-    gtag('event','sign_up',{method:'form_truoc_thanh_toan',plan_id:p.id});
-    if(p.sepay){window.open(p.sepay,'_blank','noopener');ok.textContent='Đã nhận thông tin. Trang thanh toán SePay đã mở trong tab mới.';}
-    else ok.textContent='Đã nhận thông tin. CoreU sẽ gửi link thanh toán cho bạn qua Zalo hoặc email.';
-    ok.classList.add('show');
-    if(FORM_ENDPOINT){fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(function(){});return;}
-    var lines=Object.keys(data).filter(function(k){return data[k]}).map(function(k){return k+': '+data[k]});
-    location.href='mailto:we@qqpath.com?subject='+encodeURIComponent('Mở tài khoản Claude – '+data.ten)+'&body='+encodeURIComponent(lines.join('\n'));
+    var p=byId(sel.value), amount=p.amount, product=p.name, seats='';
+    if(p.group==='team'){
+      var st=Math.max(0,parseInt(f.std.value,10)||0), pr=Math.max(0,parseInt(f.pre.value,10)||0);
+      if(st+pr<2){f.std.style.borderColor='#ff2d7a';f.std.focus();return;} f.std.style.borderColor='';
+      amount=st*8490000+pr*41990000; seats=st+' Standard + '+pr+' Premium';
+      product='Claude Team 12 tháng – '+seats; p=byId(pr>0&&st===0?'team-premium':'team-standard');
+    }
+    var phone=f.sdt.value.replace(/\D/g,''), memo='ARN'+p.code+phone;
+    order={memo:memo,amount:amount,product:product,pkg:p.id,phone:f.sdt.value.trim(),email:f.email.value.trim()};
+    var q=new URLSearchParams({name:f.ten.value.trim(),email:order.email,phone:order.phone,package:p.code,product:product,amount:String(amount),memo:memo,
+      customer_type:f.loai.value,company:f.cty.value,tax_code:f.mst.value,invoice_address:f.dc.value,seats:seats,members:f.tv.value,note:f.gd.value,
+      source:'Landing Goi Claude',submitted_at:new Date().toISOString()});
+    new Image().src=ORDER_HOOK+'?'+q;
+    try{sessionStorage.setItem('coreu:order',JSON.stringify(order))}catch(_){}
+    gtag('event','add_payment_info',{plan_id:p.id,value:amount,currency:'VND'});
+    var img=document.getElementById('qrImg');delete img.dataset.fb;
+    img.onerror=function(){if(!img.dataset.fb){img.dataset.fb='1';img.src='https://img.vietqr.io/image/VCB-'+SEPAY_ACC+'-qr_only.png?amount='+amount+'&addInfo='+encodeURIComponent(memo)}};
+    img.src='https://qr.sepay.vn/img?acc='+SEPAY_ACC+'&bank=Vietcombank&template=compact&amount='+amount+'&des='+encodeURIComponent(memo);
+    setT('payProduct',product);setT('payAmount',vnd(amount));setT('payMemo',memo);setT('payAcc',SEPAY_ACC);
+    show(payView);
+    stopPoll();var n=0;
+    poll=setInterval(function(){
+      if(++n>225)return stopPoll();
+      fetch(PAID_HOOK+'?code='+encodeURIComponent(memo),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+        var paid=false;try{var j=JSON.parse(t);paid=j.paid===true||j.paid==='true'||j.status==='paid'}catch(_){paid=/(^|[^a-z])paid([^a-z]|$)|"paid"\s*:\s*true|success/i.test(t)}
+        if(paid)done(true);
+      }).catch(function(){});
+    },4000);
   });
 })();
 </script>
