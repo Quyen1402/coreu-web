@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mở gói Claude chính chủ | CoreU</title>
+<meta name="description" content="Đăng ký Claude Pro, Claude Max và Claude Team qua CoreU: thanh toán chuyển khoản VND, giá đã gồm VAT 10%, hỗ trợ tiếng Việt.">
+<meta property="og:title" content="Mở gói Claude chính chủ | CoreU">
+<meta property="og:description" content="Claude Pro, Max, Team. Chuyển khoản VND, giá đã gồm VAT 10%, hỗ trợ tiếng Việt.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://claude.coreu.ai/icon-512.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#041d56">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- GA4: thay G-XXXXXXX bằng mã đo lường thật của coreu.ai -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXX');</script>
+<style>
+:root{
+  --mb:#041d56;--deep:#020e2e;--ink:#01081c;--tb:#83bdfd;--nb:#354a78;--sky:#57caff;--green:#57ffb9;--pink:#ff2d7a;
+  --white:#fff;--soft:#f3f7fd;--line:#e1e8f4;--glass:rgba(255,255,255,.06);--glass-line:rgba(131,189,253,.22);
+  --muted:#b9cdf0;--shadow:0 10px 40px rgba(4,29,86,.12);--glow:0 0 0 1px rgba(131,189,253,.25),0 20px 60px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,'Segoe UI',sans-serif;color:var(--mb);background:var(--deep);line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+section{padding:96px 0;position:relative;overflow:hidden}
+h1,h2,h3{line-height:1.2;letter-spacing:.01em}
+h1{font-size:clamp(2.1rem,5.4vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:700;margin-bottom:14px}
+h3{font-size:1.06rem;font-weight:700}
+.lead{font-size:1.06rem;max-width:680px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tb);margin-bottom:14px}
+.eyebrow:before{content:"";width:22px;height:2px;background:linear-gradient(90deg,var(--tb),transparent)}
+.center{text-align:center}.center .lead{margin:0 auto}.center .eyebrow{justify-content:center}
+.grad-text{background:linear-gradient(90deg,#fff 0%,var(--tb) 55%,var(--sky) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* themes */
+.dark{background:var(--deep);color:#fff}
+.dark .lead,.dark p{color:var(--muted)}
+.light{background:#fff;color:var(--mb)}
+.light .lead,.light p{color:var(--nb)}
+.soft{background:var(--soft)}
+.dark.deepgrad{background:linear-gradient(180deg,var(--deep),var(--mb))}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 28px;border-radius:12px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:.95rem;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-glow{background:linear-gradient(135deg,#fff,#dceaff);color:var(--mb);box-shadow:0 8px 30px rgba(131,189,253,.35)}
+.btn-glow:hover{box-shadow:0 12px 40px rgba(131,189,253,.55)}
+.btn-primary{background:linear-gradient(135deg,var(--mb),#0b2f84);color:#fff;box-shadow:0 8px 24px rgba(4,29,86,.35)}
+.btn-ghost{background:rgba(255,255,255,.04);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-outline{background:transparent;color:#fff;border:1px solid var(--glass-line)}
+.btn-outline:hover{background:rgba(131,189,253,.1)}
+.btn[aria-disabled="true"]{background:rgba(255,255,255,.08);color:#8ea6d1;box-shadow:none;cursor:not-allowed;transform:none;border:1px dashed rgba(131,189,253,.3)}
+.btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(3px)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(2,14,46,.82);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(131,189,253,.15)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo img{height:22px;width:auto}
+nav .links{display:flex;gap:26px;font-size:.88rem;font-weight:600;color:var(--muted)}
+nav .links a{text-decoration:none;transition:color .2s}nav .links a:hover{color:#fff}
+nav .btn{padding:10px 18px;font-size:.85rem}
+
+/* background FX */
+.aurora{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:float 18s ease-in-out infinite}
+.b1{width:520px;height:520px;background:#1d4fd1;top:-160px;left:-120px}
+.b2{width:420px;height:420px;background:var(--tb);top:10%;right:-140px;opacity:.35;animation-delay:-6s}
+.b3{width:360px;height:360px;background:var(--sky);bottom:-160px;left:35%;opacity:.25;animation-delay:-12s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,25px) scale(.95)}}
+.gridbg{position:absolute;inset:0;background-image:linear-gradient(rgba(131,189,253,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(131,189,253,.07) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%)}
+
+/* hero */
+.hero{padding:150px 0 110px;min-height:92vh;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-line);font-size:.8rem;font-weight:600;color:#dbe8ff;margin-bottom:24px}
+.pill b{background:var(--green);color:var(--ink);padding:3px 9px;border-radius:999px;font-size:.7rem;letter-spacing:.05em}
+.hero h1{color:#fff}
+.hero .lead{margin:22px 0 34px;color:var(--muted)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:46px;max-width:620px}
+.trust div{padding:14px 16px;border-radius:14px;background:var(--glass);border:1px solid var(--glass-line);font-size:.8rem;color:var(--muted)}
+.trust b{display:block;color:#fff;font-size:.95rem;margin-bottom:2px}
+.stack{position:relative;height:420px;perspective:1200px}
+.mock{position:absolute;width:300px;padding:22px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));border:1px solid var(--glass-line);backdrop-filter:blur(16px);box-shadow:var(--glow);color:#fff;transition:transform .6s}
+.mock small{color:var(--tb);font-weight:700;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.mock .p{font-size:1.6rem;font-weight:800;margin:6px 0 2px}
+.mock .p span{font-size:.8rem;font-weight:500;color:var(--muted)}
+.mock .bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);margin-top:14px;overflow:hidden}
+.mock .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--tb),var(--green));border-radius:6px}
+.m1{top:10px;left:0;transform:rotate(-6deg) translateZ(0);animation:bob 7s ease-in-out infinite}
+.m2{top:120px;right:0;transform:rotate(4deg);animation:bob 8s ease-in-out infinite -2s}
+.m3{bottom:0;left:40px;transform:rotate(-2deg);animation:bob 9s ease-in-out infinite -4s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+
+/* cards */
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{position:relative;border-radius:18px;padding:28px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.light .card,.soft .card{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.dark .card{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--glass-line)}
+.card:hover{transform:translateY(-6px)}
+.dark .card:hover{border-color:rgba(131,189,253,.55);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.light .card:hover,.soft .card:hover{box-shadow:0 20px 50px rgba(4,29,86,.16)}
+.card p{margin-top:8px;font-size:.92rem}
+.ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+.ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dark .ico{background:rgba(131,189,253,.12);color:var(--tb);border:1px solid var(--glass-line)}
+.light .ico,.soft .ico{background:linear-gradient(135deg,var(--mb),#0b2f84);color:#fff}
+.num{font-size:2.6rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--tb),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* pricing */
+#bang-gia{background:radial-gradient(ellipse at 50% 0%,#0b2f84 0%,var(--deep) 60%)}
+.tabs{display:inline-flex;padding:5px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--glass-line);margin-top:28px}
+.tab{border:0;background:transparent;padding:11px 22px;border-radius:10px;font-family:inherit;font-weight:700;font-size:.9rem;color:var(--muted);cursor:pointer;transition:all .25s}
+.tab[aria-selected="true"]{background:#fff;color:var(--mb);box-shadow:0 6px 20px rgba(131,189,253,.35)}
+.plans{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:44px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;padding:32px 28px;border-radius:22px;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid var(--glass-line);color:#fff;backdrop-filter:blur(10px);transition:transform .35s,box-shadow .35s;animation:rise .6s both}
+.plan:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.plan.rec{border:1px solid transparent;background:linear-gradient(165deg,#0d2c78,#06194a) padding-box,conic-gradient(from var(--ang),var(--tb),var(--sky),var(--green),var(--tb)) border-box;animation:rise .6s both,spin 6s linear infinite}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--ang:360deg}}
+.badge{position:absolute;top:-13px;left:28px;background:linear-gradient(90deg,var(--pink),#ff6aa2);color:#fff;font-size:.7rem;font-weight:800;padding:5px 13px;border-radius:999px;letter-spacing:.08em;box-shadow:0 6px 18px rgba(255,45,122,.4)}
+.plan h3{font-size:1.25rem}
+.plan .sub{color:var(--muted);font-size:.84rem;margin:4px 0 20px}
+.price{font-size:2.2rem;font-weight:800;letter-spacing:-.01em}
+.price small{font-size:.85rem;font-weight:500;color:var(--muted)}
+.alt{font-size:.82rem;color:var(--tb);margin-top:4px}
+.plan h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--tb);margin-top:24px;padding-top:20px;border-top:1px solid rgba(131,189,253,.15)}
+.plan ul{list-style:none;margin:8px 0 0}
+.plan li{padding:6px 0 6px 28px;position:relative;font-size:.9rem;color:#dbe8ff}
+.plan li:before{content:"";position:absolute;left:0;top:10px;width:16px;height:16px;border-radius:50%;background:rgba(87,255,185,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9' fill='none' stroke='%2357ffb9' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.plan .fit li:before{background:rgba(131,189,253,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 8h6M8.5 5.5L11 8l-2.5 2.5' fill='none' stroke='%2383bdfd' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.plan .grow{flex:1}
+.plan .actions{display:grid;gap:10px;margin-top:26px}
+.plan .btn-primary{background:linear-gradient(135deg,#fff,#dceaff);color:var(--mb)}
+.vat{font-size:.76rem;color:var(--muted);text-align:center}
+.notes{margin:34px auto 0;max-width:820px;font-size:.84rem;color:var(--muted);padding:18px 22px 18px 38px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(131,189,253,.15)}
+.notes li{margin:4px 0}
+
+/* table */
+.tbl{overflow-x:auto;margin-top:36px;border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff;min-width:620px}
+th,td{padding:16px 18px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--mb);color:#fff;font-weight:700;font-size:.82rem;letter-spacing:.04em}
+tbody tr{transition:background .2s}tbody tr:hover{background:var(--soft)}
+td:first-child{font-weight:700}
+.yes{color:#0a9e64;font-weight:800}
+
+/* info + form */
+.info-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start;margin-top:40px}
+.need{display:grid;gap:18px}
+.need .card h3{display:flex;align-items:center;gap:10px}
+.need ul{list-style:none;margin-top:10px}
+.need li{padding:5px 0 5px 22px;position:relative;font-size:.9rem;color:var(--muted)}
+.need li:before{content:"";position:absolute;left:4px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--tb)}
+.form{background:#fff;color:var(--mb);border-radius:22px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.form .head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;padding-right:40px}
+.form .head img{height:20px;width:auto}
+.form p.sub{color:var(--nb);font-size:.86rem;margin-bottom:18px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:12px;background:var(--soft);margin-bottom:16px}
+.seg label{text-align:center;padding:9px;border-radius:9px;font-weight:700;font-size:.86rem;cursor:pointer;color:var(--nb)}
+.seg input{display:none}
+.seg input:checked+span{color:#fff}
+.seg label:has(input:checked){background:var(--mb);color:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.f label{font-size:.78rem;font-weight:700;color:var(--nb)}
+.f input,.f select,.f textarea{font-family:inherit;font-size:.92rem;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#fbfcff;color:var(--mb);transition:border-color .2s,box-shadow .2s}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--tb);box-shadow:0 0 0 4px rgba(131,189,253,.25)}
+.f textarea{min-height:76px;resize:vertical}
+.biz,.biz-i{display:none}.is-biz .biz{display:block}.is-biz .biz-i{display:inline}
+.form .btn{width:100%;margin-top:6px}
+.ok{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#e9fff5;color:#05613c;font-size:.88rem}
+.ok.show{display:block}
+.form p,.form .fine{color:var(--nb)}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto}
+.modal.open{display:flex}
+.scrim{position:fixed;inset:0;background:rgba(1,8,28,.72);backdrop-filter:blur(6px);animation:fade .25s}
+.modal .form{position:relative;width:100%;max-width:560px;animation:pop .3s}
+.x{position:absolute;top:12px;right:14px;width:34px;height:34px;border-radius:50%;border:0;background:var(--soft);color:var(--mb);font-size:1.3rem;cursor:pointer}
+.form.pay{text-align:left}
+.qrbox{display:grid;place-items:center;padding:16px;border-radius:16px;background:var(--soft);border:1px solid var(--line);margin:6px 0 16px}
+.qrbox img{width:240px;height:240px;object-fit:contain;background:#fff;border-radius:10px}
+.payinfo{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:.9rem;margin-bottom:14px}
+.payinfo dt{color:var(--nb)}.payinfo dd{font-weight:600;overflow-wrap:anywhere}
+.payinfo .big{font-size:1.2rem;font-weight:800}
+.copy{margin-left:6px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:2px 8px;font:600 .72rem Montserrat,sans-serif;color:var(--mb);cursor:pointer}
+.wait{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--nb);margin-bottom:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(87,255,185,.7);animation:ping 1.4s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(87,255,185,0)}100%{box-shadow:0 0 0 0 rgba(87,255,185,0)}}
+.back{display:block;margin:12px auto 0;border:0;background:none;color:var(--nb);font:600 .84rem Montserrat,sans-serif;cursor:pointer}
+.chosen{padding:12px 14px;border-radius:12px;background:var(--soft);font-size:.88rem;margin-bottom:14px;border:1px solid var(--line)}
+.chosen b{color:var(--mb)}
+@keyframes fade{from{opacity:0}}@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.fine{font-size:.74rem;color:var(--nb);margin-top:10px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px;position:relative}
+.steps:before{content:"";position:absolute;top:28px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--mb),var(--tb));opacity:.25}
+.step{text-align:center;padding:0 6px}
+.step .n{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.1rem;color:#fff;background:linear-gradient(135deg,var(--mb),#0b2f84);box-shadow:0 0 0 8px #fff,0 10px 30px rgba(4,29,86,.3);position:relative}
+.step p{font-size:.9rem;margin-top:6px}
+.step.hl .n{background:linear-gradient(135deg,var(--tb),var(--sky));color:var(--mb)}
+
+/* faq */
+.faq{max-width:820px;margin:40px auto 0}
+details{border-radius:14px;padding:20px 24px;margin-bottom:12px;background:#fff;border:1px solid var(--line);transition:box-shadow .25s}
+details[open]{box-shadow:var(--shadow)}
+summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:1.3rem;line-height:1;color:var(--tb);transition:transform .25s}
+details[open] summary:after{transform:rotate(45deg)}
+details p{margin-top:12px;color:var(--nb);font-size:.92rem}
+details ul{margin:8px 0 0 20px;color:var(--nb);font-size:.92rem}
+
+/* final + footer */
+.final{padding:110px 0}
+.final .hero-cta{justify-content:center;margin-top:30px}
+footer{background:var(--ink);color:var(--muted);padding:56px 0 34px;font-size:.86rem}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer img{height:26px;width:auto;margin-bottom:14px}
+footer h4{color:#fff;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+footer .tag{font-style:italic;color:var(--tb)}
+footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,253,.12);font-size:.76rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ph{background:#fff6c2;color:#7a5b00;padding:1px 6px;border-radius:5px;font-size:.85em}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+@media(max-width:900px){
+  .hero-grid,.info-grid{grid-template-columns:1fr}
+  .stack{display:none}
+  nav .links{display:none}
+  .steps{grid-template-columns:1fr 1fr}.steps:before{display:none}
+  footer .cols{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  section{padding:72px 0}.hero{padding:120px 0 80px;min-height:auto}
+  .trust{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tab{padding:10px 14px;font-size:.84rem}
+  .logo img{height:19px}
+  .form{padding:24px 20px}.form .head img{height:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="https://coreu.ai" aria-label="CoreU"><img src="logo-white.png" alt="CoreU" width="134" height="30"></a>
+  <div class="links"><a href="#bang-gia">Bảng giá</a><a href="#chon-goi">Chọn gói</a><a href="#quy-trinh">Quy trình</a><a href="#faq">Hỏi đáp</a></div>
+  <a class="btn btn-glow" href="#bang-gia" data-cta="nav">Xem bảng giá</a>
+</div></nav>
+
+<!-- 1. HERO -->
+<header class="hero dark" style="position:relative;overflow:hidden">
+  <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="gridbg"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="pill"><b>CHÍNH CHỦ</b> Claude Pro · Max · Team</div>
+      <h1>Mở các gói Claude chính chủ <span class="grad-text" style="display:block;font-size:.6em;line-height:1.3;margin-top:14px">Không cần thẻ quốc tế,<br>có người hỗ trợ kỹ thuật</span></h1>
+      <p class="lead">Tài khoản đứng tên email của chính bạn, thanh toán bằng VND. CoreU mở gói Claude cho cá nhân và doanh nghiệp, giá đã gồm VAT 10%, hỗ trợ tiếng Việt từ lúc chọn gói đến khi dùng được.</p>
+      <div class="hero-cta">
+        <a class="btn btn-glow" href="#bang-gia" data-cta="hero">Chọn gói phù hợp <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#chon-goi">Mình nên chọn gói nào?</a>
+      </div>
+      <div class="trust">
+        <div><b>Chuyển khoản VND</b>qua SePay, tự xác nhận</div>
+        <div><b>Đã gồm VAT 10%</b>pháp nhân Việt Nam</div>
+        <div><b>Hỗ trợ kỹ thuật</b>bằng tiếng Việt, 0946 54 1402</div>
+      </div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="mock m1"><small>Claude Pro</small><div class="p">6.990.000đ <span>/ năm</span></div><div class="bar"><i style="width:30%"></i></div></div>
+      <div class="mock m2"><small>Claude Max 5x</small><div class="p">3.990.000đ <span>/ tháng</span></div><div class="bar"><i style="width:60%"></i></div></div>
+      <div class="mock m3"><small>Claude Team</small><div class="p">8.490.000đ <span>/ seat / năm</span></div><div class="bar"><i style="width:85%"></i></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 2. VẤN ĐỀ -->
+<section class="dark deepgrad">
+  <div class="wrap">
+    <div class="center rv"><p class="eyebrow">Bạn có đang gặp?</p><h2>Muốn dùng Claude bản đầy đủ,<br>nhưng vướng ở khâu mua</h2></div>
+    <div class="grid g3" style="margin-top:44px">
+      <div class="card rv d1"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div><h3>Không có thẻ quốc tế</h3><p>Hoặc thẻ bị từ chối, phải nhờ người quen thanh toán hộ.</p></div>
+      <div class="card rv d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><h3>Cần chứng từ cho công ty</h3><p>Kế toán cần báo giá và giá đã gồm VAT để đưa vào chi phí.</p></div>
+      <div class="card rv d3"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg></div><h3>Không biết chọn gói nào</h3><p>Pro, Max 5x, Max 20x, Team Standard, Team Premium khác nhau thế nào?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. VÌ SAO COREU -->
+<section class="light">
+  <div class="wrap">
+    <div class="rv"><p class="eyebrow">Vì sao mua qua CoreU</p><h2>Gọn thủ tục, rõ chi phí,<br>có người đồng hành</h2></div>
+    <div class="grid g4" style="margin-top:44px">
+      <div class="card rv d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18"/></svg></div><h3>Thanh toán bằng VND</h3><p>Chuyển khoản qua SePay, hệ thống tự xác nhận khi nhận tiền.</p></div>
+      <div class="card rv d2"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Pháp nhân Việt Nam</h3><p>Công ty TNHH QQ PATH, MST 0319176223. Giá đã gồm VAT 10%.</p></div>
+      <div class="card rv d3"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2.1 6.3-6.3 2.1 2.1-6.3z"/></svg></div><h3>Tư vấn đúng gói</h3><p>Chọn theo cách bạn dùng thật, không mua thừa hạn mức.</p></div>
+      <div class="card rv d3"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Hỗ trợ tiếng Việt</h3><p>Hướng dẫn kích hoạt và bắt đầu dùng, có hotline khi cần.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. BẢNG GIÁ -->
+<section class="dark" id="bang-gia">
+  <div class="gridbg"></div>
+  <div class="wrap">
+    <div class="center rv">
+      <p class="eyebrow">Bảng giá</p>
+      <h2>Chọn gói <span class="grad-text">Claude</span> cho bạn</h2>
+      <p class="lead">Giá tính cho 1 tài khoản / 1 seat, đã bao gồm VAT 10%.</p>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-group="canhan">Cá nhân</button>
+        <button class="tab" role="tab" aria-selected="false" data-group="team">Doanh nghiệp (Team)</button>
+      </div>
+    </div>
+    <div class="plans" id="plans"></div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+</section>
+
+<!-- 5. SO SÁNH -->
+<section class="light">
+  <div class="wrap">
+    <div class="rv"><p class="eyebrow">So sánh nhanh</p><h2>Hạn mức và cách thanh toán</h2></div>
+    <div class="tbl rv"><table>
+      <thead><tr><th>Gói</th><th>Hạn mức</th><th>Thanh toán</th><th>Quản trị nhóm</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Pro</td><td>Gấp ≥5 lần bản miễn phí</td><td>Theo năm</td><td>–</td></tr>
+        <tr><td>Claude Max 5x</td><td>Gấp 5 lần Pro</td><td>Theo tháng</td><td>–</td></tr>
+        <tr><td>Claude Max 20x</td><td>Gấp 20 lần Pro</td><td>Theo tháng</td><td>–</td></tr>
+        <tr><td>Team Standard</td><td>Gấp 1,25 lần Pro</td><td>Theo năm · theo tháng khi từ 10 người</td><td class="yes">✓</td></tr>
+        <tr><td>Team Premium</td><td>Gấp 6,25 lần Pro</td><td>Theo năm · theo tháng khi từ 10 người</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- 6. CHỌN GÓI -->
+<section class="soft" id="chon-goi">
+  <div class="wrap">
+    <div class="center rv"><p class="eyebrow">Hướng dẫn chọn gói</p><h2>Mình nên chọn gói nào?</h2></div>
+    <div class="grid g3" style="margin-top:44px">
+      <div class="card rv d1"><div class="num">01</div><h3 style="margin-top:14px">Mới bắt đầu, dùng cho bản thân</h3><p>Chọn <b>Claude Pro</b>. Đủ cho viết lách, tóm tắt, phân tích tài liệu và học tập.</p></div>
+      <div class="card rv d2"><div class="num">02</div><h3 style="margin-top:14px">Dùng hằng ngày, hay chạm giới hạn</h3><p>Chọn <b>Claude Max 5x</b>. Lập trình hoặc chạy tác vụ dài gần như cả ngày, chọn <b>Max 20x</b>.</p></div>
+      <div class="card rv d3"><div class="num">03</div><h3 style="margin-top:14px">Trang bị cho đội nhóm, công ty</h3><p>Chọn <b>Claude Team</b>, tối thiểu 2 seat. Phần lớn nhân sự dùng <b>Standard</b>, người dùng chuyên sâu dùng <b>Premium</b>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. QUY TRÌNH MUA -->
+<section class="light" id="quy-trinh">
+  <div class="wrap">
+    <div class="center rv"><p class="eyebrow">Mua trong 4 bước</p><h2>Đơn giản, rõ ràng</h2></div>
+    <div class="steps">
+      <div class="step rv d1"><div class="n">1</div><h3>Chọn gói</h3><p>Bấm "Thanh toán" ở gói bạn muốn. Doanh nghiệp có thể nhận báo giá trước.</p></div>
+      <div class="step hl rv d2"><div class="n">2</div><h3>Điền thông tin mở tài khoản</h3><p>Họ tên, SĐT/Zalo, email đăng nhập Claude. Doanh nghiệp thêm thông tin công ty và số seat.</p></div>
+      <div class="step rv d3"><div class="n">3</div><h3>Chuyển khoản qua SePay</h3><p>Quét mã QR, hệ thống tự xác nhận khi nhận tiền.</p></div>
+      <div class="step rv d3"><div class="n">4</div><h3>Nhận tài khoản chính chủ</h3><p>Bàn giao trong vòng 1–2 giờ làm việc kể từ khi xác nhận thanh toán.<br><small style="display:block;margin-top:6px;opacity:.85">Thứ 2 – Thứ 6: 8:00 – 17:00 · Thứ 7: 8:00 – 12:00<br>Đơn ngoài giờ được xử lý đầu giờ làm việc kế tiếp.</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="light" id="faq">
+  <div class="wrap">
+    <div class="center rv"><p class="eyebrow">Câu hỏi thường gặp</p><h2>Bạn còn băn khoăn?</h2></div>
+    <div class="faq rv">
+      <details><summary>Vì sao giá qua CoreU cao hơn tự mua trực tiếp?</summary>
+        <p>Giá CoreU là giá trọn gói bằng VND, bao gồm những phần mà khi tự mua bạn phải tự lo:</p>
+        <ul>
+          <li>Đã gồm VAT 10%, mua qua pháp nhân Việt Nam, thuận tiện cho kế toán doanh nghiệp.</li>
+          <li>Không cần thẻ quốc tế, không mất phí chuyển đổi ngoại tệ và phí giao dịch nước ngoài của ngân hàng.</li>
+          <li>Được tư vấn đúng gói, hỗ trợ mở tài khoản, cài đặt và xử lý sự cố bằng tiếng Việt trong suốt thời gian dùng.</li>
+        </ul>
+        <p>Nếu bạn đã có thẻ quốc tế và tự xử lý được, mua trực tiếp cũng là một lựa chọn tốt. CoreU phù hợp khi bạn cần sự tiện lợi, chứng từ rõ ràng và có người đồng hành.</p></details>
+      <details><summary>Giá đã gồm VAT chưa?</summary><p>Đã bao gồm VAT 10%, tính cho 1 tài khoản hoặc 1 seat.</p></details>
+      <details><summary>Tài khoản có phải chính chủ không?</summary><p>Có. Tài khoản Claude được mở theo email của chính bạn (hoặc email quản trị của công ty với gói Team), bạn toàn quyền đăng nhập và sử dụng.</p></details>
+      <details><summary>Bao lâu tôi nhận được tài khoản?</summary><p>Trong vòng 1–2 giờ làm việc kể từ khi CoreU xác nhận thanh toán. Giờ làm việc: Thứ 2 – Thứ 6 từ 8:00 đến 17:00, Thứ 7 từ 8:00 đến 12:00. Đơn đặt ngoài giờ được xử lý ngay đầu giờ làm việc kế tiếp.</p></details>
+      <details><summary>Tôi cần cung cấp gì để mở tài khoản?</summary><p>Cá nhân: họ tên, SĐT/Zalo, email đăng nhập Claude, gói đã chọn. Doanh nghiệp: thêm tên công ty, MST, địa chỉ xuất hoá đơn, email quản trị, số seat và email thành viên. Bạn điền ngay khi bấm "Thanh toán" ở gói đã chọn, trước khi sang trang chuyển khoản.</p></details>
+      <details><summary>Vì sao Claude Pro chỉ bán theo năm, Max chỉ theo tháng?</summary><p>Đây là hình thức thanh toán CoreU áp dụng cho từng gói: Claude Pro thanh toán theo năm, Claude Max thanh toán theo tháng.</p></details>
+      <details><summary>Claude Team cần tối thiểu bao nhiêu người?</summary><p>Tối thiểu 2 seat mỗi team, có thể kết hợp Standard và Premium. Giá theo tháng chỉ áp dụng cho đơn vị từ 10 người dùng trở lên.</p></details>
+      <details><summary>Gói cá nhân có dùng chung cho nhóm được không?</summary><p>Claude Pro và Claude Max là gói cá nhân, không có công cụ quản trị nhóm. Doanh nghiệp nên dùng Claude Team.</p></details>
+      <details><summary>Dữ liệu của công ty có bị dùng để huấn luyện AI không?</summary><p>Với Claude Team, dữ liệu mặc định không dùng để huấn luyện AI.</p></details>
+      <details><summary>Hạn mức có thay đổi không?</summary><p>Tính năng và hạn mức có thể thay đổi theo chính sách của Anthropic tại thời điểm đăng ký.</p></details>
+      <details><summary>Chính sách gia hạn và hoàn tiền thế nào?</summary><p><span class="ph">[Chờ chị xác nhận chính sách gia hạn, hoàn tiền]</span></p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA CUỐI -->
+<section class="dark final center">
+  <div class="aurora"><div class="blob b1" style="left:20%;top:-200px"></div><div class="blob b3" style="left:55%"></div></div>
+  <div class="gridbg"></div>
+  <div class="wrap rv">
+    <h2>Bắt đầu với <span class="grad-text">Claude</span> ngay hôm nay</h2>
+    <p class="lead">Chuyển khoản VND, giá đã gồm VAT, có người đồng hành. Cùng CoreU tiến đến toàn diện.</p>
+    <div class="hero-cta">
+      <a class="btn btn-glow" href="#bang-gia" data-cta="final">Chọn gói ngay <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="https://zalo.me/0946541402" target="_blank" rel="noopener noreferrer" data-cta="final-zalo">Hỏi tư vấn qua Zalo</a>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true"><div class="scrim" data-close></div>
+<form class="form" id="f" novalidate>
+        <button type="button" class="x" aria-label="Đóng" data-close>×</button><div class="head"><h3>Thông tin mở tài khoản</h3><img src="logo-color.png" alt="CoreU" width="116" height="26"></div>
+        <p class="sub">Điền để CoreU mở đúng tài khoản cho bạn. Bấm tiếp tục để nhận mã QR chuyển khoản.</p>
+        <div class="seg">
+          <label><input type="radio" name="loai" value="Cá nhân" checked><span>Cá nhân</span></label>
+          <label><input type="radio" name="loai" value="Doanh nghiệp"><span>Doanh nghiệp</span></label>
+        </div>
+        <div class="f"><label for="goi">Gói đăng ký</label><select id="goi" name="goi"></select></div>
+        <div class="row">
+          <div class="f"><label for="ten">Họ tên *</label><input id="ten" name="ten" required autocomplete="name"></div>
+          <div class="f"><label for="sdt">SĐT / Zalo *</label><input id="sdt" name="sdt" required inputmode="tel" autocomplete="tel"></div>
+        </div>
+        <div class="f"><label for="email">Email đăng nhập Claude * <span class="biz-i">/ email quản trị team</span></label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        <div class="biz">
+          <div class="row">
+            <div class="f"><label for="cty">Tên công ty</label><input id="cty" name="cty"></div>
+            <div class="f"><label for="mst">Mã số thuế</label><input id="mst" name="mst"></div>
+          </div>
+          <div class="f"><label for="dc">Địa chỉ xuất hoá đơn</label><input id="dc" name="dc"></div>
+          <div class="row">
+            <div class="f"><label for="std">Số seat Standard</label><input id="std" name="std" type="number" min="0" value="2"></div>
+            <div class="f"><label for="pre">Số seat Premium</label><input id="pre" name="pre" type="number" min="0" value="0"></div>
+          </div>
+          <div class="f"><label for="tv">Email thành viên (mỗi dòng 1 email)</label><textarea id="tv" name="tv"></textarea></div>
+        </div>
+        <div class="f"><label for="gd">Ghi chú</label><input id="gd" name="gd" placeholder="Không bắt buộc"></div>
+        <button class="btn btn-primary" type="submit">Tiếp tục thanh toán <span class="arr">→</span></button>
+        <div class="ok" id="ok">Đã nhận thông tin.</div>
+        <p class="fine">Hoặc gửi trực tiếp qua Zalo 0946 54 1402 · we@qqpath.com</p>
+      </form>
+<div class="form pay" id="payView" hidden>
+  <button type="button" class="x" aria-label="Đóng" data-close>×</button>
+  <div class="head"><h3>Chuyển khoản để hoàn tất</h3><img src="logo-color.png" alt="CoreU" width="89" height="20"></div>
+  <p class="sub">Quét mã QR bằng app ngân hàng. Số tiền và nội dung đã điền sẵn.</p>
+  <div class="qrbox"><img id="qrImg" alt="Mã QR thanh toán" width="240" height="240"></div>
+  <dl class="payinfo">
+    <dt>Gói</dt><dd id="payProduct"></dd>
+    <dt>Số tiền</dt><dd id="payAmount" class="big"></dd>
+    <dt>Nội dung CK</dt><dd><b id="payMemo"></b> <button type="button" class="copy" data-copy="payMemo">Sao chép</button></dd>
+    <dt>Ngân hàng</dt><dd>Vietcombank</dd>
+    <dt>Số tài khoản</dt><dd><b id="payAcc"></b> <button type="button" class="copy" data-copy="payAcc">Sao chép</button></dd>
+    <dt>Chủ tài khoản</dt><dd>CÔNG TY TNHH QQ PATH</dd>
+  </dl>
+  <p class="wait" id="payWait"><span class="dot"></span>Đang chờ xác nhận thanh toán…</p>
+  <button type="button" class="btn btn-primary" id="paidBtn">Tôi đã chuyển khoản</button>
+  <button type="button" class="back" id="payBack">← Sửa thông tin / chọn lại gói</button>
+</div>
+<div class="form pay" id="doneView" hidden>
+  <button type="button" class="x" aria-label="Đóng" data-close>×</button>
+  <div class="head"><h3 id="doneTitle">Cảm ơn bạn!</h3><img src="logo-color.png" alt="CoreU" width="89" height="20"></div>
+  <p id="doneText"></p>
+  <p class="fine">Cần hỗ trợ: Zalo / hotline 0946 54 1402 · we@qqpath.com</p>
+</div>
+</div>
+<footer><div class="wrap">
+  <div class="cols">
+    <div><img src="logo-white.png" alt="CoreU" width="152" height="34"><span class="tag">Tiến Đến Toàn Diện</span><p style="margin-top:10px">Công ty TNHH QQ PATH · MST 0319176223<br>129E Nguyễn Đình Chính, Phú Nhuận, TP. Hồ Chí Minh</p></div>
+    <div><h4>Liên hệ</h4>Hotline 0946 54 1402<br>we@qqpath.com<br>Zalo 0946 54 1402</div>
+    <div><h4>Khám phá</h4><a href="#bang-gia">Bảng giá</a><br><a href="#quy-trinh">Quy trình mua</a><br><a href="https://coreu.ai">coreu.ai</a></div>
+  </div>
+  <div class="disc"><span>© CoreU · coreu.ai</span><span>Claude là sản phẩm của Anthropic. CoreU cung cấp dịch vụ đăng ký và hỗ trợ sử dụng Claude tại Việt Nam.</span></div>
+</div></footer>
+
+<script>
+/* ==== CẤU HÌNH: chỉ cần sửa phần này ====
+   code: mã gói ghép vào nội dung CK (ARN + code + SĐT). amount: số tiền VND cho 1 tài khoản / 1 seat 12 tháng.
+   */
+var ZALO = "https://zalo.me/0946541402";
+/* SePay: tài khoản ảo Vietcombank của CÔNG TY TNHH QQ PATH (giống 75claude.coreu.ai).
+   Đơn ghi về Make (ORDER_HOOK), kiểm tra đã thanh toán qua PAID_HOOK?code=<nội dung CK>. */
+var SEPAY_ACC = "QRPSEP1ZZZZ53300166";
+var ORDER_HOOK = "https://hook.eu1.make.com/36yh0q8tbbddcrmiu6j6g7otf8uwseax";
+var PAID_HOOK = "https://hook.eu1.make.com/rfd5pp9r0n7ni810yrm13mg95x3jjhzd";
+var PACKAGES = [
+  {group:"canhan", id:"claude-pro", code:"11", amount:6990000, name:"Claude Pro", sub:"Gói cá nhân – 1 tài khoản", price:"6.990.000đ", cycle:"12 tháng", alt:"Chỉ thanh toán theo năm", recommended:true,
+   features:["Hạn mức mỗi phiên gấp ít nhất 5 lần bản miễn phí","Ưu tiên truy cập giờ cao điểm, dùng sớm tính năng mới","Tự chọn model Claude cho từng tác vụ","Projects và kho kiến thức riêng để Claude nhớ ngữ cảnh","Dùng Claude Code trên máy tính"],
+   fit:["Cá nhân, freelancer, chủ doanh nghiệp nhỏ bắt đầu dùng AI","Viết lách, soạn thảo, tóm tắt, phân tích tài liệu","Học tập, nghiên cứu, lập trình ở mức cá nhân"]},
+  {group:"canhan", id:"claude-max-5x", code:"12", amount:3990000, name:"Claude Max 5x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"3.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
+   features:["Hạn mức gấp 5 lần Claude Pro","Ưu tiên truy cập, dùng sớm model và tính năng mới nhất","Dùng Claude Code cường độ cao cho lập trình"],
+   fit:["Người dùng AI thường xuyên mỗi ngày, hay chạm giới hạn của Pro"]},
+  {group:"canhan", id:"claude-max-20x", code:"13", amount:6990000, name:"Claude Max 20x", sub:"Gói cá nhân hạn mức cao – 1 tài khoản", price:"6.990.000đ", cycle:"tháng", alt:"Chỉ thanh toán theo tháng",
+   features:["Hạn mức gấp 20 lần Claude Pro","Ưu tiên truy cập cao nhất, dùng sớm model và tính năng mới nhất","Phù hợp chạy Claude Code và tác vụ dài liên tục"],
+   fit:["Lập trình viên, chuyên gia dùng AI cường độ rất cao gần như cả ngày"]},
+  {group:"team", id:"team-standard", code:"21", amount:8490000, name:"Claude Team – Standard", sub:"Tối thiểu 2 seat / team", price:"8.490.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 1.000.000đ / seat / tháng (từ 10 người dùng)", recommended:true, quote:true,
+   features:["Hạn mức gấp 1,25 lần Claude Pro","Gồm Claude Code (lập trình) và Claude Cowork (tự động hoá việc văn phòng)","Projects dùng chung: cả nhóm làm trên cùng tài liệu, ngữ cảnh","Kết nối Google Drive, Gmail, Google Calendar, GitHub, Microsoft 365, Slack","Quản trị, thanh toán tập trung, SSO; dữ liệu mặc định không dùng để huấn luyện AI"],
+   fit:["Doanh nghiệp, phòng ban cần trang bị AI và quản lý tập trung","Soạn email, báo cáo, hợp đồng, nội dung; tóm tắt tài liệu dài","Nhân sự dùng AI thường xuyên hằng ngày"]},
+  {group:"team", id:"team-premium", code:"22", amount:41990000, name:"Claude Team – Premium", sub:"Tối thiểu 2 seat / team", price:"41.990.000đ", cycle:"seat / 12 tháng", alt:"Hoặc 5.000.000đ / seat / tháng (từ 10 người dùng)", quote:true,
+   features:["Toàn bộ tính năng của Standard seat","Hạn mức gấp 6,25 lần Pro (gấp 5 lần Standard)","Hạn mức theo tuần cao hơn, ít gián đoạn khi làm cường độ cao","Kết hợp được với Standard seat trong cùng một team"],
+   fit:["Lập trình viên dùng Claude Code cả ngày, dự án nhiều file","Phân tích dữ liệu lớn, tài liệu dài, tự động hoá quy trình","Cấp quản lý, nhân sự chủ chốt cần dùng AI không bị giới hạn sớm"]}
+];
+var NOTES = {
+  canhan:["Giá đã gồm VAT 10%, tính cho 1 tài khoản.","Claude Pro chỉ thanh toán theo năm; Claude Max chỉ thanh toán theo tháng.","Claude Pro và Claude Max là gói cá nhân, không có công cụ quản trị nhóm.","Tính năng và hạn mức có thể thay đổi theo chính sách của Anthropic tại thời điểm đăng ký."],
+  team:["Giá cho 1 seat, đã gồm VAT 10%. Giá theo tháng chỉ áp dụng cho đơn vị từ 10 người dùng trở lên.","Claude Team yêu cầu tối thiểu 2 seat / team, có thể kết hợp Standard và Premium.","Tính năng và hạn mức có thể thay đổi theo chính sách của Anthropic tại thời điểm đăng ký."]
+};
+(function(){
+  var box=document.getElementById('plans'), notes=document.getElementById('notes');
+  function li(a){return a.map(function(f){return '<li>'+f+'</li>'}).join('')}
+  function render(g){
+    box.innerHTML='';
+    PACKAGES.filter(function(p){return p.group===g}).forEach(function(p,i){
+      var pay='<button type="button" class="btn btn-primary" data-plan="'+p.id+'">Thanh toán <span class="arr">→</span></button>';
+      var quote=p.quote?'<a class="btn btn-outline" href="'+ZALO+'" target="_blank" rel="noopener noreferrer" data-quote="'+p.id+'">Nhận báo giá cho team</a>':'';
+      var el=document.createElement('div');el.className='plan'+(p.recommended?' rec':'');el.style.animationDelay=(i*.08)+'s';
+      el.innerHTML=(p.recommended?'<span class="badge">PHỔ BIẾN</span>':'')+
+        '<h3>'+p.name+'</h3><p class="sub">'+p.sub+'</p>'+
+        '<div class="price">'+p.price+' <small>/ '+p.cycle+'</small></div><p class="alt">'+p.alt+'</p>'+
+        '<div class="grow"><h4>Tính năng nổi bật</h4><ul>'+li(p.features)+'</ul>'+
+        '<h4>Phù hợp nhất cho</h4><ul class="fit">'+li(p.fit)+'</ul></div>'+
+        '<div class="actions">'+pay+quote+'<p class="vat">Đã bao gồm VAT 10%</p></div>';
+      box.appendChild(el);
+    });
+    notes.innerHTML=li(NOTES[g]);
+  }
+  render('canhan');
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t)});
+      render(t.dataset.group);gtag('event','plan_tab',{group:t.dataset.group});
+    });
+  });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-plan],[data-quote],[data-cta]');if(!a)return;
+    if(a.dataset.plan){openModal(a.dataset.plan);gtag('event','begin_checkout',{plan_id:a.dataset.plan});} else if(a.dataset.quote) gtag('event','generate_lead',{plan_id:a.dataset.quote});
+    else gtag('event','cta_click',{position:a.dataset.cta});
+  });
+
+  /* nav on scroll */
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>20)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* reveal on scroll */
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('in')});
+
+  /* form trước thanh toán */
+  var f=document.getElementById('f'), sel=document.getElementById('goi'), modal=document.getElementById('modal'), ok=document.getElementById('ok');
+  function byId(id){return PACKAGES.filter(function(p){return p.id===id})[0]}
+  function fillPlans(pick){
+    var biz=f.loai.value==='Doanh nghiệp';
+    f.classList.toggle('is-biz',biz);
+    sel.innerHTML=PACKAGES.filter(function(p){return (p.group==='team')===biz}).map(function(p){return '<option value="'+p.id+'">'+p.name+' – '+p.price+' / '+p.cycle+'</option>'}).join('');
+    if(pick)sel.value=pick;
+  }
+  function openModal(id){
+    var p=byId(id);f.loai.value=p.group==='team'?'Doanh nghiệp':'Cá nhân';
+    f.querySelectorAll('input[name=loai]').forEach(function(r){r.checked=r.value===f.loai.value});
+    fillPlans(id);ok.classList.remove('show');[document.getElementById('payView'),document.getElementById('doneView')].forEach(function(x){x.hidden=true});f.hidden=false;
+    modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+    setTimeout(function(){f.ten.focus()},50);
+  }
+  function closeModal(){if(typeof stopPoll==='function')stopPoll();modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+  modal.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))closeModal()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+  f.querySelectorAll('input[name=loai]').forEach(function(r){r.addEventListener('change',function(){fillPlans()})});
+  fillPlans();
+  var payView=document.getElementById('payView'), doneView=document.getElementById('doneView'), poll=null, order=null;
+  function show(v){[f,payView,doneView].forEach(function(x){x.hidden=x!==v});modal.scrollTop=0}
+  function setT(id,t){document.getElementById(id).textContent=t}
+  function vnd(n){return n.toLocaleString('vi-VN')+'đ'}
+  function stopPoll(){if(poll){clearInterval(poll);poll=null}}
+  function done(paid){
+    stopPoll();
+    setT('doneTitle',paid?'Đã nhận thanh toán!':'Cảm ơn bạn!');
+    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao trong vòng 1–2 giờ làm việc qua Zalo '+order.phone+' và email '+order.email+'. Giờ làm việc: Thứ 2 – Thứ 6 (8:00 – 17:00), Thứ 7 (8:00 – 12:00); đơn ngoài giờ được xử lý đầu giờ làm việc kế tiếp.');
+    gtag('event','purchase',{transaction_id:order.memo,value:order.amount,currency:'VND',items:[{item_id:order.pkg,item_name:order.product}]});
+    show(doneView);
+  }
+  document.getElementById('payBack').addEventListener('click',function(){stopPoll();show(f)});
+  document.getElementById('paidBtn').addEventListener('click',function(){done(false)});
+  modal.addEventListener('click',function(e){var c=e.target.closest('[data-copy]');if(!c)return;
+    var t=document.getElementById(c.dataset.copy).textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){c.textContent='Đã chép'},function(){c.textContent='Chép tay nhé'});
+    setTimeout(function(){c.textContent='Sao chép'},1500)});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var miss=['ten','sdt','email'].filter(function(n){var el=f[n];var v=el.value.trim();
+      var bad=!v||(n==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))||(n==='sdt'&&!/^[0-9 +().-]{8,}$/.test(v));
+      el.style.borderColor=bad?'#ff2d7a':'';return bad});
+    if(miss.length){f[miss[0]].focus();return;}
+    var p=byId(sel.value), amount=p.amount, product=p.name, seats='';
+    if(p.group==='team'){
+      var st=Math.max(0,parseInt(f.std.value,10)||0), pr=Math.max(0,parseInt(f.pre.value,10)||0);
+      if(st+pr<2){f.std.style.borderColor='#ff2d7a';f.std.focus();return;} f.std.style.borderColor='';
+      amount=st*8490000+pr*41990000; seats=st+' Standard + '+pr+' Premium';
+      product='Claude Team 12 tháng – '+seats; p=byId(pr>0&&st===0?'team-premium':'team-standard');
+    }
+    var phone=f.sdt.value.replace(/\D/g,''), memo='ARN'+p.code+phone;
+    order={memo:memo,amount:amount,product:product,pkg:p.id,phone:f.sdt.value.trim(),email:f.email.value.trim()};
+    var q=new URLSearchParams({name:f.ten.value.trim(),email:order.email,phone:order.phone,package:p.code,product:product,amount:String(amount),memo:memo,
+      customer_type:f.loai.value,company:f.cty.value,tax_code:f.mst.value,invoice_address:f.dc.value,seats:seats,members:f.tv.value,note:f.gd.value,
+      source:'Landing Goi Claude',submitted_at:new Date().toISOString()});
+    new Image().src=ORDER_HOOK+'?'+q;
+    try{sessionStorage.setItem('coreu:order',JSON.stringify(order))}catch(_){}
+    gtag('event','add_payment_info',{plan_id:p.id,value:amount,currency:'VND'});
+    var img=document.getElementById('qrImg');delete img.dataset.fb;
+    img.onerror=function(){if(!img.dataset.fb){img.dataset.fb='1';img.src='https://img.vietqr.io/image/VCB-'+SEPAY_ACC+'-qr_only.png?amount='+amount+'&addInfo='+encodeURIComponent(memo)}};
+    img.src='https://qr.sepay.vn/img?acc='+SEPAY_ACC+'&bank=Vietcombank&template=compact&amount='+amount+'&des='+encodeURIComponent(memo);
+    setT('payProduct',product);setT('payAmount',vnd(amount));setT('payMemo',memo);setT('payAcc',SEPAY_ACC);
+    show(payView);
+    stopPoll();var n=0;
+    poll=setInterval(function(){
+      if(++n>225)return stopPoll();
+      fetch(PAID_HOOK+'?code='+encodeURIComponent(memo),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+        var paid=false;try{var j=JSON.parse(t);paid=j.paid===true||j.paid==='true'||j.status==='paid'}catch(_){paid=/(^|[^a-z])paid([^a-z]|$)|"paid"\s*:\s*true|success/i.test(t)}
+        if(paid)done(true);
+      }).catch(function(){});
+    },4000);
+  });
+})();
+</script>
+</body>
+</html>
