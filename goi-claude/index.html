@@ -373,7 +373,7 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
       <div class="step rv d1"><div class="n">1</div><h3>Chọn gói</h3><p>Bấm "Thanh toán" ở gói bạn muốn. Doanh nghiệp có thể nhận báo giá trước.</p></div>
       <div class="step hl rv d2"><div class="n">2</div><h3>Điền thông tin mở tài khoản</h3><p>Họ tên, SĐT/Zalo, email đăng nhập Claude. Doanh nghiệp thêm thông tin công ty và số seat.</p></div>
       <div class="step rv d3"><div class="n">3</div><h3>Chuyển khoản qua SePay</h3><p>Quét mã QR, hệ thống tự xác nhận khi nhận tiền.</p></div>
-      <div class="step rv d3"><div class="n">4</div><h3>Nhận tài khoản chính chủ</h3><p>CoreU bàn giao trong 1–2 tiếng (giờ hành chính: 8h–17h thứ 2–thứ 6, 8h–12h thứ 7), hỗ trợ qua 0946 54 1402.</p></div>
+      <div class="step rv d3"><div class="n">4</div><h3>Nhận tài khoản chính chủ</h3><p>Bàn giao trong vòng 1–2 giờ làm việc kể từ khi xác nhận thanh toán.<br><small style="display:block;margin-top:6px;opacity:.85">Thứ 2 – Thứ 6: 8:00 – 17:00 · Thứ 7: 8:00 – 12:00<br>Đơn ngoài giờ được xử lý đầu giờ làm việc kế tiếp.</small></p></div>
     </div>
   </div>
 </section>
@@ -393,6 +393,7 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
         <p>Nếu bạn đã có thẻ quốc tế và tự xử lý được, mua trực tiếp cũng là một lựa chọn tốt. CoreU phù hợp khi bạn cần sự tiện lợi, chứng từ rõ ràng và có người đồng hành.</p></details>
       <details><summary>Giá đã gồm VAT chưa?</summary><p>Đã bao gồm VAT 10%, tính cho 1 tài khoản hoặc 1 seat.</p></details>
       <details><summary>Tài khoản có phải chính chủ không?</summary><p>Có. Tài khoản Claude được mở theo email của chính bạn (hoặc email quản trị của công ty với gói Team), bạn toàn quyền đăng nhập và sử dụng.</p></details>
+      <details><summary>Bao lâu tôi nhận được tài khoản?</summary><p>Trong vòng 1–2 giờ làm việc kể từ khi CoreU xác nhận thanh toán. Giờ làm việc: Thứ 2 – Thứ 6 từ 8:00 đến 17:00, Thứ 7 từ 8:00 đến 12:00. Đơn đặt ngoài giờ được xử lý ngay đầu giờ làm việc kế tiếp.</p></details>
       <details><summary>Tôi cần cung cấp gì để mở tài khoản?</summary><p>Cá nhân: họ tên, SĐT/Zalo, email đăng nhập Claude, gói đã chọn. Doanh nghiệp: thêm tên công ty, MST, địa chỉ xuất hoá đơn, email quản trị, số seat và email thành viên. Bạn điền ngay khi bấm "Thanh toán" ở gói đã chọn, trước khi sang trang chuyển khoản.</p></details>
       <details><summary>Vì sao Claude Pro chỉ bán theo năm, Max chỉ theo tháng?</summary><p>Đây là hình thức thanh toán CoreU áp dụng cho từng gói: Claude Pro thanh toán theo năm, Claude Max thanh toán theo tháng.</p></details>
       <details><summary>Claude Team cần tối thiểu bao nhiêu người?</summary><p>Tối thiểu 2 seat mỗi team, có thể kết hợp Standard và Premium. Giá theo tháng chỉ áp dụng cho đơn vị từ 10 người dùng trở lên.</p></details>
@@ -586,7 +587,7 @@ var NOTES = {
   function done(paid){
     stopPoll();
     setT('doneTitle',paid?'Đã nhận thanh toán!':'Cảm ơn bạn!');
-    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao trong 1–2 tiếng (giờ hành chính 8h–17h thứ 2–thứ 6, 8h–12h thứ 7) qua Zalo '+order.phone+' và email '+order.email+'.');
+    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao trong vòng 1–2 giờ làm việc qua Zalo '+order.phone+' và email '+order.email+'. Giờ làm việc: Thứ 2 – Thứ 6 (8:00 – 17:00), Thứ 7 (8:00 – 12:00); đơn ngoài giờ được xử lý đầu giờ làm việc kế tiếp.');
     gtag('event','purchase',{transaction_id:order.memo,value:order.amount,currency:'VND',items:[{item_id:order.pkg,item_name:order.product}]});
     show(doneView);
   }
