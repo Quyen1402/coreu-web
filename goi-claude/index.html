@@ -373,7 +373,7 @@ footer .disc{margin-top:34px;padding-top:20px;border-top:1px solid rgba(131,189,
       <div class="step rv d1"><div class="n">1</div><h3>Chọn gói</h3><p>Bấm "Thanh toán" ở gói bạn muốn. Doanh nghiệp có thể nhận báo giá trước.</p></div>
       <div class="step hl rv d2"><div class="n">2</div><h3>Điền thông tin mở tài khoản</h3><p>Họ tên, SĐT/Zalo, email đăng nhập Claude. Doanh nghiệp thêm thông tin công ty và số seat.</p></div>
       <div class="step rv d3"><div class="n">3</div><h3>Chuyển khoản qua SePay</h3><p>Quét mã QR, hệ thống tự xác nhận khi nhận tiền.</p></div>
-      <div class="step rv d3"><div class="n">4</div><h3>Nhận tài khoản chính chủ</h3><p>CoreU bàn giao trong <span class="ph">[chờ chị xác nhận thời gian]</span>, hỗ trợ qua 0946 54 1402.</p></div>
+      <div class="step rv d3"><div class="n">4</div><h3>Nhận tài khoản chính chủ</h3><p>CoreU bàn giao trong 1–2 tiếng (giờ hành chính: 8h–17h thứ 2–thứ 6, 8h–12h thứ 7), hỗ trợ qua 0946 54 1402.</p></div>
     </div>
   </div>
 </section>
@@ -586,7 +586,7 @@ var NOTES = {
   function done(paid){
     stopPoll();
     setT('doneTitle',paid?'Đã nhận thanh toán!':'Cảm ơn bạn!');
-    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao qua Zalo '+order.phone+' và email '+order.email+'.');
+    setT('doneText',(paid?'CoreU đã nhận được '+vnd(order.amount)+' cho '+order.product+'. ':'CoreU sẽ đối soát giao dịch '+order.memo+' và xác nhận với bạn. ')+'Tài khoản Claude chính chủ sẽ được bàn giao trong 1–2 tiếng (giờ hành chính 8h–17h thứ 2–thứ 6, 8h–12h thứ 7) qua Zalo '+order.phone+' và email '+order.email+'.');
     gtag('event','purchase',{transaction_id:order.memo,value:order.amount,currency:'VND',items:[{item_id:order.pkg,item_name:order.product}]});
     show(doneView);
   }
